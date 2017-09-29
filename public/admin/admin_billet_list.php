@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../css/bloogy.css" rel="stylesheet" />
+    <link href="../lib/jquery-ui/jquery-ui.css" rel="stylesheet" />
     <title>Bloogy - Home</title>
 </head>
     
@@ -58,7 +59,15 @@
                                 <ul class="list-group">
         <!-- Billets List -->
                                     
+                                            <!-- Billets delete modeal window confirmation -->
                                     
+
+                                    <div id="dialog-confirm" title="Confirmation de la suppression" style="display:none;">
+                                        <p>
+                                            <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+                                            Etes-vous sûr de vouloir supprimer cet élément ?
+                                        </p>
+                                    </div>
                                     
                                     
                     <?php
@@ -100,9 +109,11 @@
                                                     <button type="button" class="btn btn-success btn-xs" title="Approved">
                                                         <span class="glyphicon glyphicon-ok"></span>
                                                     </button>
+                                                    <a class="confirmModal" href="billet_delete.php?billet-id=<?php echo $donnees['id']; ?>">
                                                     <button type="button" class="btn btn-danger btn-xs" title="Delete">
                                                         <span class="glyphicon glyphicon-trash"></span>
                                                     </button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -132,8 +143,10 @@
                 
                 
     <script src="../lib/jquery/jquery.min.js"></script>
+    <script src="../lib/jquery-ui/jquery-ui.min.js"></script>
     <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="../js/navbar.js"></script>
     <script src="../js/sidebar.js"></script>
+    <script src="../js/delete-billet-confirm.js"></script>                              delete_billet_confirm
 </body>
 </html>
