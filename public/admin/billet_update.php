@@ -22,7 +22,7 @@ $req->execute();
 
 $id = $_POST['billet-id'];
 
-// Redirection du visiteur vers la page d'admin
-header('Location: billet.php?billet=' .$id);
+// Redirection du visiteur vers le billet mis à jour
+header('Location: ../billet.php?billet=' .$id);
 ?>
 

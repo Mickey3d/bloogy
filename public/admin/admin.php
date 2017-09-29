@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/bloogy.css" rel="stylesheet" />
+    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/bloogy.css" rel="stylesheet" />
     <title>Bloogy - Home</title>
 </head>
     
 <body>
     
 <?php
-    require 'frontNav.php';
+    require 'backNav.php';
 ?>
     <div id="wrapper" class="active">  
                                                 <!-- Sidebar -->
@@ -47,9 +47,9 @@
                 
                 
                 
-    <script src="lib/jquery/jquery.min.js"></script>
-    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/navbar.js"></script>
-    <script src="js/sidebar.js"></script>
+    <script src="../lib/jquery/jquery.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/sidebar.js"></script>
 </body>
 </html>

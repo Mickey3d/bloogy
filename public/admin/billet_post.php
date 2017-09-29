@@ -22,5 +22,5 @@ $req->execute();
 $id = $bdd->lastInsertId();
 
 // Redirection vers le billet nouvellement créé
-header('Location: billet.php?billet=' .$id);
+header('Location: ../billet.php?billet=' .$id);
 ?>

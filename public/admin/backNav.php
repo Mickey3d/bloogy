@@ -8,13 +8,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a id="brand" class="navbar-brand" href="index.php">Bloogy</a>
+                    <a id="brand" class="navbar-brand" href="../index.php">Bloogy</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.php">Accueil</a></li>
-                        <li><a href="blog.php">Blog</a></li>
-                        <li><a href="admin/admin.php">Admin</a></li>
+                        <li class="active"><a href="../index.php">Accueil</a></li>
+                        <li><a href="../blog.php">Blog</a></li>
+                        <li><a href="admin.php">Admin</a></li>
                     </ul>
                 </div><!-- /.nav-collapse -->
             </div><!-- /.container -->
