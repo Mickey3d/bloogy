@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 <body>
     
 <?php
-    require 'frontNav.php';
+    require '../Views/templates/frontNav.php';
 ?>
     <div class="container" >
         <header class="row">
@@ -39,49 +40,34 @@
         <section id='blog-show'>
             <div class="container">
                 
+
                 <?php
-// Connexion à la base de données
-                try
-{
-	$bdd = new PDO('mysql:host=localhost;dbname=bloogy;charset=utf8', 'root', 'root');
-}
-                catch(Exception $e)
-{       
-    die('Erreur : '.$e->getMessage());
-}
-
-// On récupère les billets
-                
-                $req = $bdd->query('SELECT id, billet_title, billet_content, DATE_FORMAT(billet_date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS billet_date_creation_fr FROM billets ORDER BY billet_date_creation DESC');
-
-                while ($donnees = $req->fetch())
+                foreach($billets as $billet)
                 {
                 ?>
                 <div class="col-md-12 blogShort" class='billets'>
                     <h1>
-                        <?php echo htmlspecialchars($donnees['billet_title']); ?>
+                        <?php echo $billet['billet_title']; ?>
 
-                        <em><small>le <?php echo $donnees['billet_date_creation_fr']; ?></small></em>
+                        <em><small>le <?php echo $billet['billet_date_creation_fr']; ?></small></em>
                     </h1>
 
                     <article>
 
                         <p>
-                <?php echo nl2br(htmlspecialchars($donnees['billet_content'])); ?>
+                <?php echo $billet['billet_content']; ?>
                         </p>
                         
                     </article>
                     
-                    <a class="btn btn-blog pull-right marginBottom10" href="billet.php?billet=<?php echo $donnees['id']; ?>">Lire plus...</a> 
+                    <a class="btn btn-blog pull-right marginBottom10" href="billet.php?billet=<?php echo $billet['id']; ?>">Lire plus...</a> 
 
                 </div>
 
-                <?php
-                } 
-// Fin de la boucle des billets
+               <?php
+                }
+                ?> 
 
-                $req->closeCursor();
-                ?>  
 
                 <div class="col-md-12 gap10"></div>
             </div>
