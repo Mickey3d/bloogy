@@ -33,7 +33,7 @@ if ($passEqualityTest) { ?>
                         <button class="btn btn-success" title="Confirm"> Confirmer <span class="glyphicon glyphicon-check"></span></button>   
                     </form>
                 
-<?php echo($_GET['id']) ?>
+
                     <a href="?p=admin.users.edit&id=<?= $_GET['id'] ?>" class="btn btn-default" >Annuler</a>
                 
                 </div>

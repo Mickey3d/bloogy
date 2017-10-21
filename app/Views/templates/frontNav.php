@@ -30,7 +30,7 @@
                          <li>
                              <a id="lien-accueil" href="?p=admin.posts.index"><span class="glyphicon glyphicon-cog"></span> Administration</a>
                         </li>
-                
+                         
                          <?php } ?>
                     <!-- User logged -->
                          <li class="dropdown">
@@ -39,7 +39,7 @@
                                 Options <b class="caret"></b>
                             </a>
                              <ul class="dropdown-menu">
-                                 <li><a href="?p=users.edit">
+                                 <li><a href="?p=users.show">
                                      <span class="glyphicon glyphicon-user"></span> Mon compte
                                      </a>
                                  </li>

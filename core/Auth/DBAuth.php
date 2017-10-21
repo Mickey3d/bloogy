@@ -29,7 +29,7 @@ class DBAuth
             if($user->password === sha1($password)){
                 $_SESSION['auth'] = $user->id;
                 $_SESSION['username'] = $user->username;
-            //    $_SESSION['role'] = $user->role;
+                $_SESSION['role'] = $user->role;
             //    $_SESSION['email'] = $user->email;
             //    $_SESSION['userLocked'] = $user->userLocked;
                 return true;

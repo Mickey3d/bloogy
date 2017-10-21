@@ -9,7 +9,7 @@ use Core\HTML\BootstrapForm;
  */
 class UsersController extends AppController{
 
-    // CommentsController builder
+    // UsersController builder
     public function __construct(){
         parent::__construct();
         $this->loadModel('user');

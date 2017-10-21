@@ -50,7 +50,7 @@
                              
                              <ul class="dropdown-menu">
                                  <li>
-                                     <a href="?p=users.edit">
+                                     <a href="?p=users.show">
                                      <span class="glyphicon glyphicon-user"></span> Mon compte
                                      </a>
                                  </li>
