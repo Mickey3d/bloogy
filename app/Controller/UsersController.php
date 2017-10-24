@@ -32,7 +32,7 @@ class UsersController extends AppController {
         if(!empty($_POST)){
             $auth = new DBAuth(App::getInstance()->getDb());
             if($auth->login($_POST['username'], $_POST['password'])){
-                header('Location: index.php?p=users.show&id=' . $_SESSION['auth'] . '');
+                header('Location: index.php?p=users.show');
             }else
             {
                 $errors = true;
@@ -92,7 +92,6 @@ class UsersController extends AppController {
         
         $userProfile = $this->user->find($_SESSION['auth']);
         
-        
         $this->template = 'profile';
         
         $activeItem = "settings" ;
@@ -107,9 +106,61 @@ class UsersController extends AppController {
         
         $deleteButton = '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-user-modal"> Supprimer le Profil </button>';
         
-        $passwordField = '<a href="?p=users.newPassword&id=' . $userEditedId . '" class="btn btn-danger"> Changer de Mot de Passe </a>' ;
-        
+        $passwordField = '<a href="?p=users.newPassword" class="btn btn-danger"> Changer de Mot de Passe </a>' ;
         
         $this->render('users.edit', compact('form', 'userProfile', 'locationTitle','passwordField', 'deleteButton', 'userEditedId', 'activeItem'));
+    }
+    
+    // Give the possibility for an admin to Change an user's password
+    public function newPassword()
+    {
+        $error = false;
+        $passEqualityTest = false;
+
+        if (!empty($_POST)) {
+            // Check if user is logged
+            if (isset($_SESSION['auth'])) {
+                $userNewPassId = $_SESSION['auth'];
+            } else {
+                // user is not logged -> GO to login page
+                header('Location: index.php??p=users.login');
+            }
+
+            // Check the mail and get the user id
+            if (!empty($userNewPassId)) {
+                // Passwords test
+                if ($_POST['password'] === $_POST['password2']) {
+                    
+                    $fields = [
+                        'password' => sha1($_POST['password'])
+                    ];
+                    
+                    // Update the user's password in DB.
+                    $result = $this->user->update($userNewPassId, $fields);
+                    
+                    
+                    
+                    if ($result) {
+                        $_SESSION['newPassword'] = true;
+                        header("location: index.php?p=users.login");
+                        exit;
+                    }
+                } else {
+                    $passEqualitytest = true;
+                }
+            }
+            
+        }
+
+        $userProfile = $this->user->find($_SESSION['auth']);
+        
+        $this->template = 'profile';
+        
+        $activeItem = "settings" ;
+        
+        $locationTitle = 'Modification du mot de passe. ';
+
+        $form = new BootstrapForm($_POST);
+        $this->render('users.newPassword', compact('form', 'userProfile', 'activeItem', 'locationTitle', 'error', 'passEqualityTest', '$userNewPassId'));
     }
 }

@@ -44,7 +44,7 @@
                                                 <div class="col-md-12">
                                                     <hr>
                                                                         
-                                                    <a href="?p=users.show&id=<?= $userEditedId ?>" class="btn btn-primary  pull-left" ><i  class="glyphicon glyphicon-chevron-left"></i> Annuler </a>
+                                                    <a href="?p=users.show" class="btn btn-primary  pull-left" ><i  class="glyphicon glyphicon-chevron-left"></i> Annuler </a>
                                                                        
                                                     <?= $deleteButton; ?>
                                                                         
