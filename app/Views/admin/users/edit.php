@@ -85,7 +85,7 @@
                                                         
                                                         <form action="?p=admin.users.delete" method="POST" style="display: inline;">
                                                             
-                                                            <input type="hidden" name="id" value="<?= $userEditedId; ?>">                             
+                                                            <input type="hidden" name="userId" value="<?= $userEditedId; ?>">                             
                                                             <button type="submit" class="btn btn-danger" title="Delete">
                                                                 Supprimer <span class="glyphicon glyphicon-trash"></span>
                                                             </button>

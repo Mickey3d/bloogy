@@ -29,9 +29,9 @@
             
                     <tr>
                 
-                        <td><strong><?= $comment->comment_id; ?></strong></td>
+                        <td><strong><?= $comment->commentId; ?></strong></td>
                         <td><?= $comment->getContent(); ?></td>
-                        <td><?= ' ' . $comment->getAuthor(); ?></td>
+                        <td><?= ' ' . $comment->getUserId(); ?></td>
                         <td><a href="?p=posts.show&id=<?= $postId; ?>">
                             <button type="button" class="btn btn-success btn-xs" title="Voir le billet">
                                 <span class="glyphicon glyphicon-eye-open"></span>                        
@@ -39,13 +39,13 @@
                             </a>
                         </td>
                         <td>
-                            <a href="?p=admin.comments.edit&id=<?= $comment->comment_id; ?>">
+                            <a href="?p=admin.comments.edit&commentId=<?= $comment->commentId; ?>">
                                 <button type="button" class="btn btn-primary btn-xs" title="Editer">
                                     <span class="glyphicon glyphicon-pencil"></span>                        
                                 </button>
                             </a>
                             <form action="?p=admin.comments.delete" onsubmit="return deleteConfirm();" method="post" style="display:    inline;">
-                                <input type="hidden" name="id" value="<?= $comment->comment_id; ?>">
+                                <input type="hidden" name="commentId" value="<?= $comment->commentId; ?>">
                                 <button type="submit" class="btn btn-danger btn-xs" title="Delete">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>

@@ -21,10 +21,35 @@ class CommentTable extends Table{
      */
     public function getComments($id){
 		return $this->query("		
-		SELECT id AS comment_id, content, postId, author, CommentDate
-		FROM comments            
-		WHERE postId = ?
-        ORDER BY comment_id DESC", [$id], false);
+		SELECT id AS commentId, content, postID, userId AS userID, author, commentDate
+		FROM comments
+        
+		WHERE postID = ?
+        ORDER BY commentId DESC", [$id], false);
+    }
+    
+     /**
+     * Get userId from a coment
+	 * @param int $id -> comment id
+     * @return CommentEntity array
+     */
+    public function getUserId($id){
+		return $this->query("		
+		SELECT userId
+		FROM comments  
+		WHERE postId = ?", [$id], true);
+    }
+
+     /**
+     * Get id from a coment
+	 * @param int $id -> post id
+     * @return CommentEntity array
+     */
+    public function getComId($id){
+		return $this->query("		
+		SELECT id AS comId
+		FROM comments
+		WHERE postId = ?", [$id], false);
     }
     
     /**
@@ -33,9 +58,10 @@ class CommentTable extends Table{
      */
     public function getAllComments(){
 	    return $this->query("
-                            SELECT id AS comment_id, content, postId, author, CommentDate
+                            SELECT id AS commentId, content, postID, userID, author, commentDate
                             FROM comments
-                            GROUP BY postId, content
+                            
+                            GROUP BY postID, content
                             ORDER BY CommentDate DESC");
     }
     
@@ -52,7 +78,9 @@ class CommentTable extends Table{
     {
 		$sSql = [
 			'content' => $_POST['content'],
-			'postId' => $postID
+			'postId' => $postID,
+            'userId' => $_SESSION['auth'],
+            'author' => $_SESSION['username']
 		];			
 		
 		$res = $this->create($sSql);

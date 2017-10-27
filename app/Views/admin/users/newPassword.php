@@ -34,7 +34,7 @@ if ($passEqualityTest) { ?>
                     </form>
                 
 
-                    <a href="?p=admin.users.edit&id=<?= $_GET['id'] ?>" class="btn btn-default" >Annuler</a>
+                    <a href="?p=admin.users.edit&userId=<?= $_GET['userId'] ?>" class="btn btn-default" >Annuler</a>
                 
                 </div>
             </div>

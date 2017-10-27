@@ -55,7 +55,7 @@
 
 
                                 <?php 
-                                if (empty($_GET['id'])) {
+                                if (empty($_GET['userId'])) {
 
                                     require 'profile_usermenu.php';
                                 }

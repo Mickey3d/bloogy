@@ -36,7 +36,7 @@
                         <td><?= $user->email; ?></td>
                         <td><?= $user->role; ?></td>
                         <td>
-                            <a href="?p=users.show&id=<?= $user->id; ?>">
+                            <a href="?p=users.show&userId=<?= $user->id; ?>">
                                 <button type="button" class="btn btn-success btn-xs" title="Voir le Profil">
                                     <span class="glyphicon glyphicon-eye-open"></span>                        
                                 </button>
@@ -45,13 +45,13 @@
                                     
                         <td>
                             <div class="action">
-                                <a href="?p=admin.users.edit&id=<?= $user->id; ?>">
+                                <a href="?p=admin.users.edit&userId=<?= $user->id; ?>">
                                     <button type="button" class="btn btn-primary btn-xs" title="Editer">
                                         <span class="glyphicon glyphicon-pencil"></span>                        
                                     </button>
                                 </a>                
                                 <form action="?p=admin.users.delete" method="POST" style="display: inline;">
-                                    <input type="hidden" name="id" value="<?= $user->id; ?>">                             
+                                    <input type="hidden" name="userId" value="<?= $user->id; ?>">                             
                                     <button type="submit" class="btn btn-danger btn-xs" title="Delete">
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </button>

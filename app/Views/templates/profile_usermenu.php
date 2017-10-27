@@ -27,7 +27,7 @@ switch ($activeItem) {
             <a href="?p=users.show"><i class="glyphicon glyphicon-user"></i> Mon Profil </a>
         </li>
         <li <?php echo($settingsCssClass) ?> >
-            <a href="?p=users.edit"><i class="glyphicon glyphicon-cog"></i> Parametre du Compte </a>
+            <a href="?p=users.edit"><i class="glyphicon glyphicon-cog"></i> Paramètres du Compte </a>
         </li>
         <li <?php echo($commentsCssClass) ?> >
             <a href="#"><i class="glyphicon glyphicon-comment"></i> Mes Commentaires </a>

@@ -38,7 +38,7 @@ class CommentsController extends AppController{
     public function edit(){
         if (!empty($_POST)) 
         {
-            $result = $this->comment->update($_GET['id'], [
+            $result = $this->comment->update($_GET['commentId'], [
                 'content' => $_POST['content']                
             ]);
             if($result){
@@ -47,7 +47,7 @@ class CommentsController extends AppController{
             }
         }
 
-        $post = $this->comment->find($_GET['id']);
+        $post = $this->comment->find($_GET['commentId']);
 
         $locationTitle = 'Edition d\'un commentaire';
 
@@ -58,7 +58,7 @@ class CommentsController extends AppController{
     // Delete a comment and go back to the refresh comments list
     public function delete(){
         if (!empty($_POST)) {
-            $result = $this->comment->delete($_POST['id']);
+            $result = $this->comment->delete($_POST['commentId']);
             return $this->index();
         }
     }

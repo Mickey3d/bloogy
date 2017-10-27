@@ -42,7 +42,9 @@ if (!empty($_POST)){
 	$commentTable = app::getInstance()->getTable('comment');
 
 	$sql = [	'content' => htmlspecialchars($_POST['comment']),
-				'postId'  => $_POST['postID']
+				'postId'  => $_POST['postID'],
+                'userId'  => $_SESSION['auth'],
+                'author'  => $_SESSION['username']
 			];	
 	
 	$res = $commentTable->create($sql);
@@ -113,13 +115,13 @@ if (!empty($_POST)){
                         <div class="media-body">
                             <div class="well well-lg">
                                 <h4 class="media-heading text-uppercase reviews">
-                                    <?= $comment->getAuthor(); ?>
+                                    par : <?= $comment->author; ?>
                                 </h4>
                                 <ul class="media-date text-uppercase reviews list-inline">
-                                    <li class="dd"><?= $comment->getCommentDate(); ?></li>
+                                    <li class="dd">le <?= $comment->commentDate; ?></li>
                                 </ul>
                                 <p class="media-comment">
-                                    <?= $comment->getContent(); ?>
+                                    <?= $comment->content; ?>
                                 </p>
                             </div>
                             </div>     
@@ -198,7 +200,7 @@ if (!empty($_POST)){
                         <div class="media-body">
                             <div class="well well-lg">
                                 <h4 class="media-heading text-uppercase reviews">
-                                    <?= $comment->getAuthor(); ?>
+                                    <?= $comment->getUserId(); ?>
                                 </h4>
                                 <ul class="media-date text-uppercase reviews list-inline">
                                     <?= $comment->getCommentDate(); ?></li>

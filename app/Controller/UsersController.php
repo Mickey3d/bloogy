@@ -55,9 +55,9 @@ class UsersController extends AppController {
 
         $userProfile = '';
         
-        if (!empty($_GET['id'])) {
+        if (!empty($_GET['userId'])) {
             
-        $userProfile = $this->user->find($_GET['id']);    
+        $userProfile = $this->user->find($_GET['userId']);    
             
         } else {
         

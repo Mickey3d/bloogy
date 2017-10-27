@@ -12,7 +12,7 @@ class CommentEntity Extends Entity {
     /**
      * Comment's id -> @var integer
      */
-    protected $id;	
+    protected $commentId;	
     
     /**
      * Content's Comment -> @var string
@@ -20,7 +20,12 @@ class CommentEntity Extends Entity {
     protected $content;
 	
     /**
-     * Author's name comment -> @var string
+     * Author's id -> @var int
+     */
+    protected $userId;
+    
+    /**
+     * Author's name -> @var string
      */
     protected $author;
 	
@@ -37,10 +42,14 @@ class CommentEntity Extends Entity {
 
     // GETTER
 
-    public function getId() {
-        return $this->id;
+    public function getCommentId() {
+        return $this->commentId;
     }
 	
+    public function getUserId() {
+        return $this->userId;
+    }
+    
     public function getAuthor() {
         return $this->author;
     }

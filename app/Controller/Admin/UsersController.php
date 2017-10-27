@@ -40,7 +40,7 @@ class UsersController extends AppController{
                 $fields['isLocked'] =  1;
             }
 
-            $result = $this->user->update($_GET['id'], $fields);
+            $result = $this->user->update($_GET['userId'], $fields);
 
             if($result)
             {
@@ -48,17 +48,17 @@ class UsersController extends AppController{
             }
         }
 
-        $data = $this->user->find($_GET['id']);
+        $data = $this->user->find($_GET['userId']);
 
         $locationTitle = 'Mode Edition d\'un utilisateur';
 
         $form = new BootstrapForm($data);
         
-        $userEditedId = $_GET['id'];
+        $userEditedId = $_GET['userId'];
         
         $deleteButton = '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-user-modal"> Supprimer le Profil </button>';
         
-        $passwordField = '<a href="?p=admin.users.newPassword&id=' . $userEditedId . '" class="btn btn-danger"> Changer de Mot de Passe </a>' ;
+        $passwordField = '<a href="?p=admin.users.newPassword&userId=' . $userEditedId . '" class="btn btn-danger"> Changer de Mot de Passe </a>' ;
         
         
         $this->render('admin.users.edit', compact('form', 'locationTitle','passwordField', 'deleteButton', 'userEditedId'));
@@ -68,7 +68,7 @@ class UsersController extends AppController{
     public function delete(){
         if (!empty($_POST)) {
             
-            $result = $this->user->delete($_POST['id']);
+            $result = $this->user->delete($_POST['userId']);
             return $this->index();
         }
     }
@@ -108,12 +108,12 @@ class UsersController extends AppController{
     {
         $error = false;
         $passEqualityTest = false;
-        $userNewPassId = $_GET['id'];
+        $userNewPassId = $_GET['userId'];
 
         if (!empty($_POST)) {
             // Check if user is logged
             if (isset($_SESSION['auth'])) {
-                $userNewPassId = $_GET['id'];
+                $userNewPassId = $_GET['userId'];
             } else {
                 // user is not logged -> GO to login page
                 header('Location: index.php??p=users.login');

@@ -8,6 +8,7 @@ class PostsController extends AppController {
         $this->loadModel('Post');
         $this->loadModel('comment');
         $this->loadModel('Category');
+        $this->loadModel('user');
     }
 
     public function index(){
@@ -34,7 +35,7 @@ class PostsController extends AppController {
      */
 	public function addComment() {
 		// todo gestion de l'erreur eventuelle de la requete.
-		$this->comment->add($_GET['id'], $_GET['comment']);
+		$this->comment->add($_GET['id'], $_GET['userId'], $_GET['comment']);
 		// Refresh the data.
 		$this->show();
 	}
