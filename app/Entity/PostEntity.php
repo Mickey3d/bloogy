@@ -8,7 +8,7 @@ class PostEntity extends Entity {
     // ATTRIBUT
     
      // Post id -> @var integer
-    protected $id;
+    protected $postId;
 
      // Post title->  @var string
     protected $titre;
@@ -26,8 +26,8 @@ class PostEntity extends Entity {
     
     // GETTER
     
-    public function getId() {
-        return $this->id;
+    public function getPostId() {
+        return $this->postId;
     }
     
     public function getTitle() {
@@ -39,8 +39,8 @@ class PostEntity extends Entity {
     }
 
     public function getUrl() {
-        $id = $this->getId();
-        $urlLink = 'index.php?p=posts.show&id=' . $id . '';
+        $id = $this->getPostId();
+        $urlLink = 'index.php?p=posts.show&postId=' . $id . '';
         return $urlLink;
     }
     

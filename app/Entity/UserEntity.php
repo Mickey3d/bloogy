@@ -7,7 +7,7 @@ use Core\Entity\Entity;
 class UserEntity Extends Entity {
     
     // User id. -> @var integer
-    protected $userId;	
+    protected $id;	
     
     // User name. -> @var string
     protected $username;
@@ -25,8 +25,8 @@ class UserEntity Extends Entity {
 
 // GETTER
     
-    public function getUserId() {
-        return $this->userId; 
+    public function getId() {
+        return $this->id; 
     }
 
     public function getUsername() {

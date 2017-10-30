@@ -8,7 +8,6 @@ class PostsController extends AppController {
         $this->loadModel('Post');
         $this->loadModel('comment');
         $this->loadModel('Category');
-        $this->loadModel('user');
     }
 
     public function index(){
@@ -18,15 +17,15 @@ class PostsController extends AppController {
     }
 
     public function category(){
-        $categorie = $this->Category->find($_GET['id']);
-        $articles = $this->Post->lastByCategory($_GET['id']);
+        $categorie = $this->Category->find($_GET['postId']);
+        $articles = $this->Post->lastByCategory($_GET['postId']);
         $categories = $this->Category->all();
         $this->render('posts.category', compact('articles', 'categorie', 'categories'));
     }
 
     public function show(){
-        $post = $this->Post->findWithCategory($_GET['id']);
-        $comments = $this->comment->getComments($_GET['id']);
+        $post = $this->Post->findWithCategory($_GET['postId']);
+        $comments = $this->comment->getComments($_GET['postId']);
         $this->render('posts.show', compact('post','comments'));
     }
     
@@ -35,7 +34,7 @@ class PostsController extends AppController {
      */
 	public function addComment() {
 		// todo gestion de l'erreur eventuelle de la requete.
-		$this->comment->add($_GET['id'], $_GET['userId'], $_GET['comment']);
+		$this->comment->add($_GET['postId'], $_GET['userId'], $_GET['comment']);
 		// Refresh the data.
 		$this->show();
 	}

@@ -29,7 +29,7 @@
                         {
                     ?>
                     <div class="col-md-12 blogShort" class='billets'>
-                        <h2><a href="?p=posts.show&id=<?= $post->post_id; ?>"><?= $post->title ?></a></h2>
+                        <h2><a href="?p=posts.show&postId=<?= $post->postId; ?>"><?= $post->title ?></a></h2>
 
                             <em><small>le <?= $post->date; ?> </small></em>
                         </h1>
@@ -40,7 +40,7 @@
                         
                         </article>
                     
-                            <a class="btn btn-blog pull-right marginBottom10" href="?p=posts.show&id=<?= $post->post_id; ?>">Lire plus...</a> 
+                            <a class="btn btn-blog pull-right marginBottom10" href="?p=posts.show&postId=<?= $post->postId; ?>">Lire plus...</a> 
 
                     </div>
 

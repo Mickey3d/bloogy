@@ -431,7 +431,204 @@ input[type="file"]{
 
 /* USER PROFILE */
 
+/* USER INDEX */
 
+
+.userCardPanel .pad {
+  padding: 0 15px; 
+}
+.userCardPanel.flip .action {
+  display: none;
+}
+
+.userCardPanel {
+  width: 200px;
+  height: 300px;
+  margin: 20px;
+  position: relative;
+  display:inline-block;
+  -webkit-perspective: 600px;
+  -moz-perspective: 600px;
+}
+.userCardPanel .front {
+  z-index: 900;
+  width: inherit;
+  height: inherit;
+  background: #fff;
+  
+  -moz-box-shadow: 0 1px 15px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 1px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 15px rgba(0,0,0,0.1);
+  
+  -webkit-transform: rotateX(0deg) rotateY(0deg);
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  
+  -moz-transform: rotateX(0deg) rotateY(0deg);
+  -moz-transform-style: preserve-3d;
+  -moz-backface-visibility: hidden;
+  
+  -o-transform: rotateX(0deg) rotateY(0deg);
+  -o-transform-style: preserve-3d;
+  -o-backface-visibility: hidden;
+  
+  -ms-transform: rotateX(0deg) rotateY(0deg);
+  -ms-transform-style: preserve-3d;
+  -ms-backface-visibility: hidden;
+ 
+  transform: rotateX(0deg) rotateY(0deg);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  
+  -o-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+.userCardpanel.flip .front {
+  z-index: 900;
+  background: #fff;
+  
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  
+  -moz-box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+}
+  	
+.userCardPanel .back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 800;
+  width: inherit;
+  height: inherit;
+  background: #fff;
+  border:1px solid #000;
+  -webkit-transform: rotateY(-180deg);
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  
+  -moz-transform: rotateY(-180deg);
+  -moz-transform-style: preserve-3d;
+  -moz-backface-visibility: hidden;
+  
+  -o-transform: rotateY(-180deg);
+  -o-transform-style: preserve-3d;
+  -o-backface-visibility: hidden;
+  
+  -ms-transform: rotateY(-180deg);
+  -ms-transform-style: preserve-3d;
+  -ms-backface-visibility: hidden;
+  
+  transform: rotateY(-180deg);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+ 
+  -o-transition: all .4s ease-in-out;
+  -ms-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+		
+.userCardPanel.flip .back {
+  z-index: 1000;
+  background: #fff;
+  
+  -webkit-transform: rotateX(0deg) rotateY(0deg);
+  -moz-transform: rotateX(0deg) rotateY(0deg);
+  -ms-transform: rotateX(0deg) rotateY(0deg);
+  -o-transform: rotateX(0deg) rotateY(0deg);
+  transform: rotateX(0deg) rotateY(0deg);
+  
+  box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+}
+
+.frontTitle {
+  padding-top:5px;
+  text-align:center;
+  font-family:'latoregular',arial;
+  font-size:18px;
+  color:#000;
+  height:45px;
+}
+
+.frontLogo {
+    width:100%;
+    height:200px;
+    background-repeat:no-repeat;
+    background-position:center center;
+}
+
+.userPicture {
+  
+  background-size:150px 150px;
+}
+
+.boisedigital {
+ background-image:url('http://dizin.x10.bz/codepen/wgaFq/logo_dark.png');
+      background-size:85% auto;
+  background-position:center center;
+}
+
+.dissolve {
+ background-image:url('http://portfolio.dizin.x10.bz/images/dissolve.png');
+      background-size:125px 125px;  
+}
+
+.frontLocation {
+  padding-top:10px;
+  text-align:center;
+  color:#aaa;
+  font-family:'latoregular',arial;
+  font-size:18px;
+}
+
+.backTitle {
+  padding:10px;
+   color:#000;
+  font-family:'latohairline',arial;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.backParagraph {
+   padding:10px;
+  padding-top:0;
+   color:#000;
+  font-family:'latoregular',arial;
+  font-size:14px;
+}
+
+.backGoto {
+  padding:10px;
+  padding-top:0;
+  color:#06f;
+  font-family:'latoregular',arial;
+  font-size:14px;
+}
+
+.backGoto a {
+  text-decoration:none;
+  color:#06f;
+  -webkit-transition:0.1s all linear;
+  -moz-transition:0.1s all linear;
+  -o-transition:0.1s all linear;
+  transition:0.1s all linear;
+}
+
+.backGoto a:hover {
+  text-decoration:underline;
+  padding-left:15px;
+}
 
 /* Profile container */
 .profile {
@@ -440,8 +637,10 @@ input[type="file"]{
 
 /* Profile sidebar */
 .profile-sidebar {
-  padding: 20px 0 10px 0;
+    text-align: center;
+  padding: 20px 0px 10px 0;
   background: #fff;
+  position: fixed;
 }
 
 .profile-userpic img {
@@ -493,6 +692,8 @@ input[type="file"]{
     
 .profile-usermenu {
   margin-top: 30px;
+  margin-left: -40px;
+  position: fixed;
 }
 
 .profile-usermenu ul li {
@@ -537,6 +738,19 @@ input[type="file"]{
   min-height: 460px;
 }
 
+@media (max-width:767px) {
+
+.profile-usermenu {
+  margin-top: 30px;
+  margin-left:0px;
+  position: relative;
+}
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+  position: relative;
+}
+}
 
 /*  USER EDIT */
 
@@ -571,3 +785,97 @@ div.avatar {
     display: block;
 }
 
+/* USER COMMENTS */
+
+
+.comment {
+    overflow: hidden;
+    padding: 0 0 1em;
+    border-bottom: 1px solid #ddd;
+    margin: 0 0 1em;
+    *zoom: 1;
+}
+
+.comment-img {
+    float: left;
+    margin-right: 33px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.comment-img img {
+    display: block;
+}
+
+.comment-body {
+    overflow: hidden;
+}
+
+.comment .text {
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.comment .text p:last-child {
+    margin: 0;
+}
+
+.comment .attribution {
+    margin: 0.5em 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Decoration */
+
+.comments,
+.comment {
+    position: relative;
+}
+
+.comments:before,
+.comment:before,
+.comment .text:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 65px;
+}
+
+.comments:before {
+    width: 3px;
+    top: -20px;
+    bottom: -20px;
+    background: rgba(0,0,0,0.1);
+}
+
+.comment:before {
+    width: 9px;
+    height: 9px;
+    border: 3px solid #fff;
+    border-radius: 100px;
+    margin: 16px 0 0 -6px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.2), inset 0 1px 1px rgba(0,0,0,0.1);
+    background: #ccc;
+}
+
+.comment:hover:before {
+    background: orange;
+}
+
+.comment .text:before {
+    top: 18px;
+    left: 78px;
+    width: 9px;
+    height: 9px;
+    border-width: 0 0 1px 1px;
+    border-style: solid;
+    border-color: #e5e5e5;
+    background: #fff;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}​

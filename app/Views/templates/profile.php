@@ -22,13 +22,13 @@
 
     
     <!-- MAIN CONTENT --------------------------------------------------------------------------------------------->
-    <div class="col-md-10 container">
+    <div class="col-md-12 container">
         <section id='blog-show'>
             <div class="container">
                 
-                <div class="container">
+                <div >
                     <div class="row profile">
-                        <div class="col-md-3">
+                        <div class="col-lg-3">
                             <div class="profile-sidebar">
                                 <!-- SIDEBAR USERPIC -->
                                 <div class="profile-userpic">
@@ -58,13 +58,18 @@
                                 if (empty($_GET['userId'])) {
 
                                     require 'profile_usermenu.php';
+                                } else {
+                                    
+                                   require 'profile_publicmenu.php'; 
                                 }
+
+                                
                                 ?>
   
 				<!-- END MENU -->
                             </div>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-lg-9">
                             <div class="profile-content">
                                
                                 
@@ -75,16 +80,17 @@
                         </div>
                     </div>
                 </div>
-                <center>
-                    <strong>Powered by Bloogy</strong>
-                </center>
-            <br>
+               
             <br>
 
-                <div class="col-md-12 gap10"></div>
+                
                 
             </div>
         </section>		
+    </div>
+    
+    <div class="col-lg-12">
+        <strong>Powered by Bloogy</strong>
     </div>
     
                                             <!-- /.container -->

@@ -20,7 +20,7 @@
                     
         <div class="container">
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <div class=" panel panel-default widget">
                         <div class="panel-heading">
                             <span class="glyphicon glyphicon-edit"></span>
@@ -48,7 +48,7 @@
                                                 
                                         <div class="col-xs-10 col-md-10">
                                             <div>
-                                                <a href="?p=posts.show&id=<?= $post->id; ?>"><?= $post->title; ?></a>
+                                                <a href="?p=posts.show&postId=<?= $post->postId; ?>">  <?= $post->title; ?> </a>
                                                 <div class="mic-info">le <?= $post->date; ?></div>
                                             </div>
                                                     
@@ -56,7 +56,7 @@
                                                     
                                                     
                                             <div class="action">
-                                                <a href="?p=admin.posts.edit&id=<?= $post->id; ?>">
+                                                <a href="?p=admin.posts.edit&postId=<?= $post->postId; ?>">
                                                     <button type="button" class="btn btn-primary btn-xs" title="Editer">
                                                         <span class="glyphicon glyphicon-pencil"></span>
                                                     </button>
@@ -64,7 +64,7 @@
             
                                                 <form action="?p=admin.posts.delete" method="POST" style="display: inline;">
                                                             
-                                                    <input type="hidden" name="id" value="<?= $post->id; ?>">
+                                                    <input type="hidden" name="postId" value="<?= $post->postId; ?>">
                     
                                                     <button type="submit" class="btn btn-danger btn-xs" title="Delete">
                                                         <span class="glyphicon glyphicon-trash"></span>

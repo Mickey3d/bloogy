@@ -31,8 +31,10 @@
                 
                         <td><strong><?= $comment->commentId; ?></strong></td>
                         <td><?= $comment->getContent(); ?></td>
-                        <td><?= ' ' . $comment->getUserId(); ?></td>
-                        <td><a href="?p=posts.show&id=<?= $postId; ?>">
+                        <td><a href="?p=users.show&userId=<?= $comment->userID; ?>" title="Voir le Profil">
+                            <?= $comment->username; ?>   
+                            </a>
+                        <td><a href="?p=posts.show&postId=<?= $postId; ?>">
                             <button type="button" class="btn btn-success btn-xs" title="Voir le billet">
                                 <span class="glyphicon glyphicon-eye-open"></span>                        
                             </button>

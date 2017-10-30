@@ -21,24 +21,41 @@ class CommentTable extends Table{
      */
     public function getComments($id){
 		return $this->query("		
-		SELECT id AS commentId, content, postID, userId AS userID, author, commentDate
+		SELECT comments.id AS commentId, content, postID, userID, username, commentDate
 		FROM comments
-        
+        INNER JOIN users ON userID = users.id
 		WHERE postID = ?
         ORDER BY commentId DESC", [$id], false);
     }
     
-     /**
-     * Get userId from a coment
-	 * @param int $id -> comment id
+    
+    /**
+     * Get Comments for a post
+	 * @param int $id -> post id
      * @return CommentEntity array
      */
+    public function getUserComments($userID){
+		return $this->query("		
+		SELECT comments.id AS commentId, content, postID, userID, username, commentDate
+		FROM comments
+        INNER JOIN users ON userID = users.id
+		WHERE userID = ?
+        ORDER BY commentId DESC", [$userID], false);
+    }
+    
+     /**
+     * Get userId from a comment
+	 * @param int $id -> comment id
+     * @return CommentEntity array
+     
     public function getUserId($id){
 		return $this->query("		
-		SELECT userId
+		SELECT userID AS userId
 		FROM comments  
 		WHERE postId = ?", [$id], true);
     }
+    
+    */
 
      /**
      * Get id from a coment
@@ -58,9 +75,9 @@ class CommentTable extends Table{
      */
     public function getAllComments(){
 	    return $this->query("
-                            SELECT id AS commentId, content, postID, userID, author, commentDate
+                            SELECT comments.id AS commentId, content, postID, userID, username, commentDate
                             FROM comments
-                            
+                            INNER JOIN users ON userID = users.id
                             GROUP BY postID, content
                             ORDER BY CommentDate DESC");
     }

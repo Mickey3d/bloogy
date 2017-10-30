@@ -13,7 +13,7 @@ class PostsController extends AppController {
     
     // Indes of all Posts
     public function index(){
-        $posts = $this->Post->all();
+        $posts = $this->Post->last();
         $locationTitle = 'Administration des Billets';
         $this->render('admin.posts.index', compact('posts', 'locationTitle'));
     }
@@ -36,10 +36,10 @@ class PostsController extends AppController {
         $this->render('admin.posts.edit', compact('categories', 'form', 'locationTitle'));
     }
 
-    // Edit a Post 
+    // Edit a Post -> Return to Admin Post Index
     public function edit(){
         if(!empty($_POST)){
-            $result = $this->Post->update($_GET['id'], [
+            $result = $this->Post->update($_GET['postId'], [
                 'titre' => $_POST['title'],
                 'contenu' => $_POST['content'],
                 'category_id' => $_POST['category_id']
@@ -48,17 +48,17 @@ class PostsController extends AppController {
                 header('Location: index.php?p=admin.posts.index');
             }
         }
-        $post = $this->Post->find($_GET['id']);
+        $post = $this->Post->find($_GET['postId']);
         $categories =  $this->Category->extract('id', 'titre');
         $locationTitle = 'Mode Edition d\'un Billet';
         $form = new BootstrapForm($post);
-        $this->render('admin.posts.edit', compact('categories', 'form', 'locationTitle'));
+        $this->render('admin.posts.edit', compact('post', 'categories', 'form', 'locationTitle'));
     }
 
     // Delete a Post
     public function delete(){
         if(!empty($_POST)){
-            $result = $this->Post->delete($_POST['id']);
+            $result = $this->Post->delete($_POST['postId']);
             return $this->index();
         }
     }

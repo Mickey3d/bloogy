@@ -22,7 +22,7 @@
 
     
     <!-- MAIN CONTENT --------------------------------------------------------------------------------------------->
-    <div class="col-md-10 container">
+    <div class="col-md-12 container">
         <section id='blog-show'>
             <div class="container">
                 

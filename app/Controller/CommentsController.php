@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller;
 
 use Core\HTML\BootstrapForm;
 
@@ -19,20 +19,42 @@ class CommentsController extends AppController{
         parent::__construct();
         $this->loadModel('comment');
         $this->loadModel('Post');
+        $this->loadModel('user');
         
     }
 
-    // Request all the comments and transmit it to the view
-    public function index(){
+    // // Show User's Comments
+    public function index() {
 
-        $title = 'Back Office';
-
-        $comments = $this->comment->getAllComments();
-        $posts = $this->Post->all();
-        $locationTitle = 'Administration des Commentaires';
-
-        $this->render('admin.comments.index', compact('comments', 'posts', 'locationTitle'));
+        $userProfile = '';
+        
+        $locationTitle = '';
+        
+        if (!empty($_GET['userId'])) {
+            
+        $userProfile = $this->user->find($_GET['userId']);
+            
+        $comments = $this->comment->getUserComments($_GET['userId']);
+            
+        $locationTitle = 'Commentaires du Profil';
+            
+        } else {
+        
+            $userProfile = $this->user->find($_SESSION['auth']);
+            
+            $comments = $this->comment->getUserComments($_SESSION['auth']);
+            
+            $locationTitle = 'Mes Commentaires';
+        }
+        
+        $this->template = 'profile';
+        
+        $activeItem = "comments" ;
+               
+        
+        $this->render('comments.user_comments_index', compact('userProfile', 'locationTitle', 'activeItem', 'comments'));
     }
+    
 
     // Edit a comment and go back to the refresh comments list
     public function edit(){
@@ -46,13 +68,23 @@ class CommentsController extends AppController{
                 exit;
             }
         }
+        
+        $userProfile = $this->user->find($_SESSION['auth']);
+        
+        $this->template = 'profile';
+        
+        $activeItem = "comments" ;
 
+        $data = $this->user->find($_SESSION['auth']);
+
+        $locationTitle = 'Edition de Mon Commentaire';
+        
         $post = $this->comment->find($_GET['commentId']);
 
         $locationTitle = 'Edition d\'un commentaire';
 
         $form = new BootstrapForm($post);
-        $this->render('admin.comments.edit', compact('form', 'locationTitle'));
+        $this->render('comments.user_comment_edit', compact('form', 'locationTitle', 'activeItem', 'userProfile'));
     }
 
     // Delete a comment and go back to the refresh comments list
@@ -78,7 +110,7 @@ class CommentsController extends AppController{
             // else if $_GET['from']is not defined, call is from backend
             
         } else {
-            $url = 'index.php?p=admin.comments.index';
+            $url = 'index.php?p=comments.index';
         }
         return $url;
     }

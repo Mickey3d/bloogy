@@ -13,6 +13,7 @@ class UsersController extends AppController {
         parent::__construct();
         
         $this->loadModel('user');
+        $this->loadModel('comment');
     }
 
     // Request all Users from User Model render-> Users Index View.
@@ -163,4 +164,38 @@ class UsersController extends AppController {
         $form = new BootstrapForm($_POST);
         $this->render('users.newPassword', compact('form', 'userProfile', 'activeItem', 'locationTitle', 'error', 'passEqualityTest', '$userNewPassId'));
     }
+    
+    
+    // Show User's Comments
+    public function userComments(){
+
+        $userProfile = '';
+        
+        $locationTitle = '';
+        
+        if (!empty($_GET['userId'])) {
+            
+        $userProfile = $this->user->find($_GET['userId']);
+            
+        $comments = $this->comment->getUserComments($_GET['userId']);
+            
+        $locationTitle = 'Commentaires du Profil';
+            
+        } else {
+        
+            $userProfile = $this->user->find($_SESSION['auth']);
+            
+            $comments = $this->comment->getUserComments($_SESSION['auth']);
+            
+            $locationTitle = 'Mes Commentaires';
+        }
+        
+        $this->template = 'profile';
+        
+        $activeItem = "comment" ;
+               
+        
+        $this->render('users.comments', compact('userProfile', 'locationTitle', 'activeItem', 'comments'));
+    }
+    
 }

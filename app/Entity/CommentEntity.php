@@ -22,12 +22,12 @@ class CommentEntity Extends Entity {
     /**
      * Author's id -> @var int
      */
-    protected $userId;
+    protected $userID;
     
     /**
      * Author's name -> @var string
      */
-    protected $author;
+    protected $username;
 	
 	/**
      * Creation's date of the comment -> @var dateTime -> CURRENT TIMESTAMP
@@ -37,7 +37,7 @@ class CommentEntity Extends Entity {
     /**
      * Post's id for the comment -> @var integer
      */
-    protected $postId;
+    protected $postID;
 
 
     // GETTER
@@ -45,25 +45,25 @@ class CommentEntity Extends Entity {
     public function getCommentId() {
         return $this->commentId;
     }
-	
-    public function getUserId() {
-        return $this->userId;
-    }
-    
-    public function getAuthor() {
-        return $this->author;
-    }
 
     public function getContent() {
         return $this->content;
+    }
+    
+    public function getUserID() {
+        return $this->userID;
+    }
+    
+    public function getUsername() {
+        return $this->username;
     }
 
 	public function getCommentDate(){
 		return $this->commentDate;
 	}
 
-    public function getPostId() {
-        return $this->postId;
+    public function getPostID() {
+        return $this->postID;
     }
 	
 	
