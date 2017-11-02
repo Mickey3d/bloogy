@@ -32,6 +32,12 @@
                                 <span class="glyphicon glyphicon-eye-open"></span>                        
                             </button>
                             </a>
+                        
+                            <?php
+    
+                            $userProfileId = $userProfile->id;
+                            
+                            if (($userProfileId === $_SESSION['auth']) || ($_SESSION['role'] == 'admin')) { ?>
                             
                             <a href="?p=comments.edit&commentId=<?= $comment->commentId; ?>">
                                 <button type="button" class="btn btn-primary btn-xs" title="Editer">
@@ -45,6 +51,10 @@
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </form>
+                            
+                            <?php }
+                            ?>
+                            
                         </div>
                         
                         <p class="attribution">par <a href="#non"> <?= $comment->username; ?> </a> <?= $comment->commentDate; ?></p>

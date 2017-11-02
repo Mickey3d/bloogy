@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html>
 <head>
@@ -68,7 +70,9 @@
         </div><!-- /.container -->
     </nav><!-- /.navbar -->
 
-    
+<?php
+if ((isset($_SESSION['role'])) && ($_SESSION['role'] == 'admin')) {
+?>    
 
     <div id="wrapper" class="active">  
                                                 <!-- Sidebar -->
@@ -95,7 +99,28 @@
         </div>
       </div>
 
-                
+<?php } else { ?>
+    <div class="col-lg-12">
+        <h1> VOUS DEVEZ ÊTRE ADMINISTRATEUR POUR ACCEDER A CETTE PAGE ! </h1>
+        
+        <div class="col-lg-12 jumbotron"><div class="col-lg-3">
+            <a href="?p=posts.index">Retour sur le Blog<span class="sub_icon glyphicon glyphicon-home"></span></a>
+        </div>
+        
+        <div class="col-lg-5"></div>
+        
+        
+        <div class="col-lg-3">
+            <a href="?p=users.index">Retour sur la liste des Utilisateurs<span class="sub_icon glyphicon glyphicon-user"></span></a>
+        </div></div>
+        
+        
+        
+    </div>
+<?php 
+             }
+
+?>                
                 
                 
     <script src="lib/jquery/jquery.min.js"></script>
@@ -104,3 +129,4 @@
     <script src="js/sidebar.js"></script>
 </body>
 </html>
+

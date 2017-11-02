@@ -119,7 +119,7 @@ if (!empty($_POST)){
                                             par : 
                                             <a href="?p=users.show&userId=<?= $comment->userID; ?>" title="Voir le Profil">
                                                 <?= $comment->username; ?>
-                                                <span class="glyphicon glyphicon-eye-open"></span>    
+                                                <span class="glyphicon glyphicon-chevron-right"></span>    
                                             </a>
                                         </h4>
                                         <ul class="media-date text-uppercase reviews list-inline">
@@ -128,7 +128,34 @@ if (!empty($_POST)){
                                         <p class="media-comment">
                                             <?= $comment->content; ?>
                                         </p>
+                                        <p>
+            <?php                            
+            
+            // If the user already report this comment ?
+			$reportId = $this->report->isReported($comment->commentId, $_SESSION['auth']);
+			
+			if ($reportId) {
+				$param = "&reportId=" . $reportId . "&postId=" . $post->getPostId(); ?>
+				<span class="glyphicon glyphicon-eye-close"></span>
+				<a href="?p=reports.cancel<?php echo $param ; ?>"> Annuler le signalement</a>	
+				<?php
+			} else {
+				$param = "&postId=" . $post->getPostId(). "&commentId=". $comment->getCommentId() . "&comAuthorId=" . $comment->getUserId();				
+			?>
+				<span class="glyphicon glyphicon-eye-open"></span>
+				<a href="?p=reports.add<?php echo $param ; ?>"> Signaler le commentaire</a>
+				
+			<?php
+			} ?> 	
+                                        
+                                        
+                                        
+                                        
+                                        </p>
                                     </div>
+                                    
+                                    
+                                    
                                 </div>     
                             </li>
 
@@ -211,6 +238,11 @@ if (!empty($_POST)){
                                         <p class="media-comment">
                                         <?= $comment->getContent(); ?>
                                         </p>
+                                        
+                                        		
+                                        
+                                        
+                                        
                                     </div>
                                 </div>     
                             </li>

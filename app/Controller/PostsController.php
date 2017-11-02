@@ -8,6 +8,7 @@ class PostsController extends AppController {
         $this->loadModel('Post');
         $this->loadModel('comment');
         $this->loadModel('Category');
+        $this->loadModel('report');
     }
 
     public function index(){
@@ -17,8 +18,8 @@ class PostsController extends AppController {
     }
 
     public function category(){
-        $categorie = $this->Category->find($_GET['postId']);
-        $articles = $this->Post->lastByCategory($_GET['postId']);
+        $categorie = $this->Category->find($_GET['id']);
+        $articles = $this->Post->lastByCategory($_GET['id']);
         $categories = $this->Category->all();
         $this->render('posts.category', compact('articles', 'categorie', 'categories'));
     }

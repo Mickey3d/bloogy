@@ -26,7 +26,7 @@
                         <?php } else {
                 
                              //  User is logged.
-                             if ($_SESSION['auth']) { ?>
+                             if ($_SESSION['role'] == 'admin') { ?>
                          <li>
                              <a id="lien-accueil" href="?p=admin.posts.index"><span class="glyphicon glyphicon-cog"></span> Administration</a>
                         </li>
