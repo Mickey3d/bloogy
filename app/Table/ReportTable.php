@@ -17,8 +17,8 @@ class ReportTable extends Table{
 	/**
 	 * Add a report
      *
-	 * @param int $comId comment id
-	 * @param int $usrId user id
+	 * @param int $comID comment id
+	 * @param int $authorID user author id
      *
 	 * @return boolean the result of the query
 	 */

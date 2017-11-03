@@ -30,7 +30,7 @@ class CommentTable extends Table{
     
     
     /**
-     * Get Comments for a post
+     * Get Comments for a post from a user
 	 * @param int $id -> post id
      * @return CommentEntity array
      */
@@ -82,7 +82,20 @@ class CommentTable extends Table{
                             ORDER BY CommentDate DESC");
     }
     
-    
+    /**
+     * get  comments with (or without) count of reported comments and comment author name.
+     * @return -> Array of CommentEntity object.
+     */
+    public function getReportedComments(){
+	    
+        $noCount = 0;
+        return $this->query("
+                            SELECT comments.id as commentId, content, username, comments.userID, comments.postID, count(reports.commentID) AS reported FROM `comments`
+                            LEFT JOIN reports ON comments.id = reports.commentID
+                            LEFT JOIN users on comments.userID = users.id
+                            GROUP BY comments.id, content
+                            ORDER BY Reported DESC");
+    }
     public function findPostTitle($id){
 		return $this->query("		
 		SELECT titre

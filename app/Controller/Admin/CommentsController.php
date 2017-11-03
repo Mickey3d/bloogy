@@ -28,10 +28,11 @@ class CommentsController extends AppController{
         $title = 'Back Office';
 
         $comments = $this->comment->getAllComments();
+        $reportedComments = $this->comment->getReportedComments();
         $posts = $this->Post->all();
         $locationTitle = 'Administration des Commentaires';
 
-        $this->render('admin.comments.index', compact('comments', 'posts', 'locationTitle'));
+        $this->render('admin.comments.index', compact('comments', 'reportedComments', 'posts', 'locationTitle'));
     }
 
     // Edit a comment and go back to the refresh comments list

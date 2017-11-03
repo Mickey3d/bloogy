@@ -258,7 +258,7 @@ if (!empty($_POST)){
                             <button type="button" class="close" data-dismiss="alert">
                                 <span aria-hidden="true">×</span><span class="sr-only">Fermer</span>                        
                             </button>
-                            <strong>Hey!</strong> Si vous avez déjà un compte <a href="?p=users.login&Id=" <?php $post->getpostId(); ?>  class="alert-link">Connectez vous</a> d'abord pour laisser un commentaire.
+                            <strong>Hey!</strong> Si vous avez déjà un compte <a href="?p=users.login&Id=" <?php $post->getpostId();  ?>  class="alert-link">Connectez vous</a> d'abord pour laisser un commentaire.
                         </div>
                     </div>
                 </div>
