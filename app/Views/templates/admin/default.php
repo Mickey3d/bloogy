@@ -8,6 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bloogy.css" rel="stylesheet" />
+    <script src='lib/tinymce/tinymce.min.js'></script>
+    <script>
+        tinymce.init({
+            selector: '#tinytextarea',
+            language: 'fr_FR',
+            height: 500,
+            menubar: false,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste code textcolor colorpicker '
+            ],
+            toolbar: 'undo redo | insert | styleselect | bold italic | forecolor  | alignleft aligncenter alignright alignjustify' +
+            ' | bullist numlist outdent indent | link image'
+        });
+    </script>
+    
     <title><?= App::getInstance()->title; ?></title>
 </head>
     

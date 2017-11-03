@@ -12,7 +12,7 @@
                             <?= $form->input('title', 'Titre du Billet'); ?>
                         </div>
                         <div class="form-group">
-                            <?= $form->input('content', 'Contenu du Billet', ['type' => 'textarea']); ?>
+                            <?= $form->input('content', 'Contenu du Billet', ['type' => 'tinytextarea'], true); ?>
                         </div>
                         <div class="form-group">  
                             <?= $form->select('category_id', 'Catégorie', $categories); ?>

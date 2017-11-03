@@ -10,7 +10,7 @@
                     <form role="form" method="POST">
                         <div class="form-group">
                             <!-- <?//= $form->input('content', 'Contenu', ['type' => 'tinytextarea'], true); ?>  -->
-                            <?= $form->input('content', 'Commentaire', ['type' => 'textarea']); ?>
+                            <?= $form->input('content', 'Commentaire', ['type' => 'tinytextarea'], true); ?>
                         </div>
                         <button class="btn btn-success">Enregistrer</button>
                                           

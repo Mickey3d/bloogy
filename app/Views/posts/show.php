@@ -1,24 +1,24 @@
 <!-- MAIN CONTENT --------------------------------------------------------------------------------------------->
-    <div class="container">
+
         <div class="container">
             <div class="row"> 
                 <div>
-                    <div class="page-header">
-                        <h1><?= $post->title ?></em></h1>      
+                    <div class="col-lg-12 page-header">
+                        <h1><strong><?= $post->title ?></strong></h1>      
                     </div>
                 <img src="">
             
                 <article>           
-                    <p>     
                         
                         <?= $post->content; ?>    
                     
-                    </p>
                 </article>
 
                 </div>
 	       </div>
         </div>
+
+<div class="col-xl-12"><span class="glyphicon glyphicon-option-horizontal"></span></div>
     
         <div class=" container">
             <div class="jumbotron">
@@ -27,14 +27,14 @@
                         <h2 class='blog-title'> <?= $post->title; ?></em></h2>
                             <p><a href="index.php">Retour à la liste des billets</a></p>
                     </div>
-                    <div>
+                    <div class="col-lg-6">
                         <p><small><?= $post->date; ?></small></p>
                         <p><em><?= $post->categorie; ?></em></p>
                     </div>  
                 </div>
             </div>
-
         </div>
+
 
 
 <?php
@@ -69,13 +69,12 @@ if (!empty($_POST)){
 			<strong><?= $totalComments . ' ' .  $commentWritted ?></strong>	
 </div>
 
-<div class="col-md-2"></div>  
 
 <!-- /.container -->
 
-<section id='comment-ui-container'>
+<section id="comment-ui-container">
     
-<div class="container" >
+<div class="container">
   
     <?php
     // post a comment is available only for authenticated users
@@ -122,6 +121,7 @@ if (!empty($_POST)){
                                                 <span class="glyphicon glyphicon-chevron-right"></span>    
                                             </a>
                                         </h4>
+                                        
                                         <ul class="media-date text-uppercase reviews list-inline">
                                             <li class="dd">le <?= $comment->commentDate; ?></li>
                                         </ul>
@@ -232,6 +232,7 @@ if (!empty($_POST)){
                                         <h4 class="media-heading text-uppercase reviews">
                                             <?= $comment->getUsername(); ?>
                                         </h4>
+                                        
                                         <p class="media-date text-uppercase reviews list-inline">
                                             <?= $comment->getCommentDate(); ?>
                                         </p>

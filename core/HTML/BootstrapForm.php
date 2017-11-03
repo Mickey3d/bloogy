@@ -8,15 +8,22 @@ class BootstrapForm extends Form
         return "<div class=\"form-group\">{$html}</div>";
     }
 
-    public function input($name, $label, $options = []){
+    public function input($name, $label, $options = [], $required = false){
         $type = isset($options['type']) ? $options['type'] : 'text';
+        $tag = isset($options['tag']) ? $options['tag'] : 'div';
+
         $label = '<label>' . $label . '</label>';
-        if($type === 'textarea'){
-            $input = '<textarea name="' . $name . '" class="form-control input-lg">' . $this->getValue($name) . '</textarea>';
-        }else{
-            $input = '<input type="' . $type . '" name="' . $name . '" value="' . $this->getValue($name) . '" class="form-control input-lg">';
+        $requiredField = ($required) ? ' required' : "";
+
+        if($type === 'textarea') { // case textarea
+            $input = '<textarea name="' . $name . '" class="form-control">' . $this->getValue($name) . '</textarea>';
+        } elseif ($type === 'tinytextarea'){ // case textarea with extension tinyMCE
+            $input = '<textarea id="tinytextarea" name="' . $name . '" class="form-control">' . $this->getValue($name) . '</textarea>';
+        } else{
+            $input = '<input type="' . $type . '" name="' . $name . '" value="' . $this->getValue($name) . '" class="form-control"' . $requiredField . '>';
         }
-        return $this->surround($label . $input);
+
+        return $this->surround($label . $input, $tag);
     }
 
     /**

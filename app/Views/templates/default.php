@@ -22,15 +22,11 @@
 
     
     <!-- MAIN CONTENT --------------------------------------------------------------------------------------------->
-    <div class="col-md-12 container">
-        <section id='blog-show'>
-            <div class="container">
+    <div >
+        <section id="blog-show">
                 
                 <?= $content; ?>
-
-                <div class="col-md-12 gap10"></div>
-                
-            </div>
+            
         </section>		
     </div>
     
