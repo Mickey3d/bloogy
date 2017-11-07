@@ -9,6 +9,14 @@
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bloogy.css" rel="stylesheet" />
     <title><?= App::getInstance()->title; ?></title>
+    
+    <style>
+    
+        #parallax-world-of-ugg .parallax-one {background-image: url(img/postsPictures/posts/image-fond-article.jpg);}
+    
+    
+    </style>
+    
 </head>
     
 <body>

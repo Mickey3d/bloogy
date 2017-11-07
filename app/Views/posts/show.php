@@ -1,22 +1,29 @@
+<div id="parallax-world-of-ugg">
+  
+
+
+<section>
+    <div class="parallax-one">
+      <h2><?= $post->title ?></h2>
+    </div>
+</section>
+
+<section>
+  <div class="block">
+    <article class="margin-top-10">           
+                        
+        <?= $post->content; ?>    
+                    
+    </article>
+    <p class="line-break margin-top-10"></p>
+  </div>
+</section>
+  
+</div>
+
+
 <!-- MAIN CONTENT --------------------------------------------------------------------------------------------->
 
-        <div class="container">
-            <div class="row"> 
-                <div>
-                    <div class="col-lg-12 page-header">
-                        <h1><strong><?= $post->title ?></strong></h1>      
-                    </div>
-                <img src="">
-            
-                <article>           
-                        
-                        <?= $post->content; ?>    
-                    
-                </article>
-
-                </div>
-	       </div>
-        </div>
 
 <div class="col-xl-12"><span class="glyphicon glyphicon-option-horizontal"></span></div>
     
