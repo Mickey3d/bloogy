@@ -27,7 +27,7 @@ class PostsController extends AppController {
     public function show(){
         $post = $this->Post->findWithCategory($_GET['postId']);
         $comments = $this->comment->getComments($_GET['postId']);
-        $this->render('posts.show', compact('post','comments'));
+        $this->render('posts.show', compact('post','comments', 'pictureUrl'));
     }
     
     /**

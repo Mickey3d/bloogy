@@ -10,7 +10,7 @@
 
 <section>
   <div class="block">
-    <article class="margin-top-10">           
+    <article class="margin-top-10"> 
                         
         <?= $post->content; ?>    
                     

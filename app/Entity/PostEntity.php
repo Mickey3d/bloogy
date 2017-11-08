@@ -18,9 +18,9 @@ class PostEntity extends Entity {
 
 	// Post Url -> @var string
     private $url;	
-    
-     // Post id -> @var integer
-    protected $picture_id;  
+
+    // Picture Url. -> @var string
+    protected $pictureUrl;
 
     
     
@@ -44,8 +44,8 @@ class PostEntity extends Entity {
         return $urlLink;
     }
     
-    public function getPicture_id() {
-        return $this->picture_id;
+        public function getPictureUrl() {
+        return $this->pictureUrl;
     }
 
     // Return an extract of the content

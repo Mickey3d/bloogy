@@ -303,6 +303,12 @@ footer {
 }
 
 
+.postThumbnail {
+    
+    max-height: 200px;
+    max-width: 260px;
+}
+
                     /* END OF POST DESIGN */
 
                                 /* Titre principal/
@@ -317,6 +323,7 @@ footer {
 .post-content {
     font-size: 16px;
 }
+
 
 
                                 /* Titre principal pour le back office	*/

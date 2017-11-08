@@ -12,6 +12,10 @@
                             <?= $form->input('title', 'Titre du Billet'); ?>
                         </div>
                         <div class="form-group">
+                            <?= $form->input('pictureUrl', 'Lien de l\'image'); ?>
+                        </div>
+                        
+                        <div class="form-group">
                             <span class="glyphicon glyphicon-camera"></span>
                             <span class="btn btn-link btn-file"> Ajouter une Image <input type="file" id="postPicture"></span>
                         </div>

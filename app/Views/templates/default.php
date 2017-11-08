@@ -12,8 +12,27 @@
     
     <style>
     
+        <?php
+        
+        if (isset($post)) {
+        
+            if ($post->pictureUrl == '' ) {
+        
+        ?>
+        
         #parallax-world-of-ugg .parallax-one {background-image: url(img/postsPictures/posts/image-fond-article.jpg);}
     
+        <?php
+        
+        } else {
+        
+        ?>
+        #parallax-world-of-ugg .parallax-one {background-image: url(<?= $post->pictureUrl; ?> );}
+        
+        <?php
+        }
+            
+        }    ?>
     
     </style>
     
