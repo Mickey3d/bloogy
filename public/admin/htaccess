@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Admin"
-AuthUserFile /Users/mickeywelensky/Sites/bloogy/public/admin/.htpasswd
-Require valid-user
