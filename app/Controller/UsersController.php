@@ -14,6 +14,7 @@ class UsersController extends AppController {
         
         $this->loadModel('user');
         $this->loadModel('comment');
+        $this->loadModel('Setting');
     }
 
     // Request all Users from User Model render-> Users Index View.
@@ -22,7 +23,9 @@ class UsersController extends AppController {
         $users = $this->user->all('username');
 
         $locationTitle = 'Profiles des Utilisateurs';
-        $this->render('users.index', compact('users', 'locationTitle'));
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
+        $this->render('users.index', compact('users', 'locationTitle', 'settings'));
     }
     
         
@@ -40,7 +43,9 @@ class UsersController extends AppController {
             }
         }
         $form = new BootstrapForm($_POST);
-        $this->render('users.login', compact('form', 'errors'));
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
+        $this->render('users.login', compact('form', 'errors', 'settings'));
     }
     
 
@@ -69,13 +74,55 @@ class UsersController extends AppController {
         
         $activeItem = "profile" ;
         
-        $locationTitle = 'Profil';        
+        $locationTitle = 'Profil';    
         
-        $this->render('users.show', compact('userProfile', 'locationTitle', 'activeItem'));
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
+        
+        $this->render('users.show', compact('userProfile', 'locationTitle', 'activeItem', 'settings'));
     }
     
     
-    // Edit Profile
+     // Edit Profile -> info
+    public function infoEdit(){
+
+        if (!empty($_POST)) {
+            
+            $fields =  ['info' => $_POST['info']];
+
+            $result = $this->user->update($_SESSION['auth'], $fields);
+
+            if($result)
+            {
+                return $this->show();
+            }
+        }
+        
+        $userProfile = $this->user->find($_SESSION['auth']);
+        
+        $this->template = 'profile';
+        
+        $activeItem = "profile" ;
+
+        $data = $this->user->find($_SESSION['auth']);
+
+        $locationTitle = 'Edition des Informations de mon Profil';
+
+        $form = new BootstrapForm($data);
+        
+        $userEditedId = $_SESSION['auth'];
+        
+        
+        
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
+        
+        $this->render('users.infoEdit', compact('form', 'userProfile', 'locationTitle', 'userEditedId', 'activeItem', 'settings'));
+    }
+    
+    
+    
+    // Edit Account Profile
     public function edit(){
 
         if (!empty($_POST)) {
@@ -109,7 +156,10 @@ class UsersController extends AppController {
         
         $passwordField = '<a href="?p=users.newPassword" class="btn btn-danger"> Changer de Mot de Passe </a>' ;
         
-        $this->render('users.edit', compact('form', 'userProfile', 'locationTitle','passwordField', 'deleteButton', 'userEditedId', 'activeItem'));
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
+        
+        $this->render('users.edit', compact('form', 'userProfile', 'locationTitle','passwordField', 'deleteButton', 'userEditedId', 'activeItem', 'settings'));
     }
     
     // Give the possibility for an admin to Change an user's password
@@ -160,9 +210,12 @@ class UsersController extends AppController {
         $activeItem = "settings" ;
         
         $locationTitle = 'Modification du mot de passe. ';
+        
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
 
         $form = new BootstrapForm($_POST);
-        $this->render('users.newPassword', compact('form', 'userProfile', 'activeItem', 'locationTitle', 'error', 'passEqualityTest', '$userNewPassId'));
+        $this->render('users.newPassword', compact('form','userProfile', 'activeItem', 'locationTitle', 'error', 'passEqualityTest', '$userNewPassId','settings'));
     }
     
     
@@ -193,9 +246,12 @@ class UsersController extends AppController {
         $this->template = 'profile';
         
         $activeItem = "comment" ;
+        
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
                
         
-        $this->render('users.comments', compact('userProfile', 'locationTitle', 'activeItem', 'comments'));
+        $this->render('users.comments', compact('userProfile', 'locationTitle', 'activeItem', 'comments', 'settings'));
     }
     
 }

@@ -8,7 +8,23 @@
     <meta name="author" content="">
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bloogy.css" rel="stylesheet" />
-    <title><?= App::getInstance()->title; ?></title>
+    <script src='lib/tinymce/tinymce.min.js'></script>
+    <script>
+        tinymce.init({
+            selector: '#tinytextarea',
+            language: 'fr_FR',
+            height: 500,
+            menubar: false,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste code textcolor colorpicker '
+            ],
+            toolbar: 'undo redo | insert | styleselect | bold italic | forecolor  | alignleft aligncenter alignright alignjustify' +
+            ' | bullist numlist outdent indent | link image'
+        });
+    </script>
+    <title><?= $settings->siteName; ?></title>
 </head>
     
 <body>
@@ -89,7 +105,7 @@
         </section>		
     </div>
     
-    <div class="col-lg-12">
+    <div class="col-lg-12 center">
         <strong>Powered by Bloogy</strong>
     </div>
     

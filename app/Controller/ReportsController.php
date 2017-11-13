@@ -15,6 +15,7 @@ class ReportsController extends AppController{
 		
         $this->loadModel('Report');
         $this->loadModel('comment');
+        $this->loadModel('Setting');
     }
 
     /**

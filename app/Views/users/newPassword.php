@@ -9,7 +9,7 @@ if ($passEqualityTest) { ?>
 
 
 
-<div class="page-content inset">
+<div class="page-content inset center">
     <div class="row">
         <div class="col-md-12">
             <p class="well lead"> <?= $locationTitle ?> </p>
@@ -30,11 +30,11 @@ if ($passEqualityTest) { ?>
                         <?= $form->input('password', 'Nouveau mot de passe *', ['type' => 'password'], true); ?>
                         <?= $form->input('password2', 'Confirmez le Mot de passe *', ['type' => 'password'], true); ?>
                         
-                        <button class="btn btn-success" title="Confirm"> Confirmer <span class="glyphicon glyphicon-check"></span></button>   
+                        <button class="btn btn-success pull-right" title="Confirm"> Confirmer <span class="glyphicon glyphicon-check"></span></button>   
                     </form>
                 
 
-                    <a href="?p=users.edit" class="btn btn-default" >Annuler</a>
+                    <a href="?p=users.edit" class="btn btn-default pull-left" >Annuler</a>
                 
                 </div>
             </div>

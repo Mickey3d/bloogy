@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bloogy.css" rel="stylesheet" />
-    <title><?= App::getInstance()->title; ?></title>
+    <title><?= $settings->siteName; ?></title>
     
     <style>
     

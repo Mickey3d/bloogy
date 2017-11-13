@@ -9,16 +9,20 @@
                 <div class="form-area">
                     <form role="form" method="POST">
                         <div class="form-group">
-                            <!-- <?//= $form->input('content', 'Contenu', ['type' => 'tinytextarea'], true); ?>  -->
-                            <?= $form->input('content', 'Commentaire', ['type' => 'textarea']); ?>
+                            <?= $form->input('siteName', 'Nom du Site'); ?>
                         </div>
-                        <button class="btn btn-success">Enregistrer</button>
+                        <div class="form-group">
+                            <?= $form->input('slogan', 'Slogan du Site'); ?>
+                        </div>
+                        <div class="form-group">
+                            <?= $form->input('logoSubtitle', 'Sous Titre du Logo'); ?>
+                        </div>
+                        <div class="form-group">
+                            <?= $form->input('mailContact', 'Email de Contact *',['type' => 'email'], true); ?>
+                        </div>
+                        <button class="btn btn-success">Valider</button>
                                           
-                        <?php
-                        // get link for redirection
-                        $link = $this->getLocation();
-                        ?>
-                        <a class="btn btn-danger" href="<?=$link;?>">Annuler</a>
+                        <a class="btn btn-danger" href="?p=admin.posts.index">Annuler</a>
                         <br />
                         <br />
                         <div class="col-md-12 well lead"></div>

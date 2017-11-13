@@ -21,6 +21,9 @@ class UserEntity Extends Entity {
     // User email. -> @var string
     protected $role;
     
+    // User info. -> @var string
+    protected $info;
+    
 
 
 // GETTER
@@ -42,6 +45,10 @@ class UserEntity Extends Entity {
     }
     public function getRole() {
         return $this->role;
+    }
+    
+    public function getInfo() {
+        return $this->info;
     }
 
 }

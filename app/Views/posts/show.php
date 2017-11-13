@@ -1,6 +1,14 @@
-<div id="parallax-world-of-ugg">
-  
+<?php
 
+// use of IntlDateFormatter class to get a "French date"
+    $mask = "EEEE d MMMM YYYY '&agrave;' HH:mm ";
+
+    $postDate = new DateTime($post->date);
+
+?>
+
+
+<div id="parallax-world-of-ugg">
 
 <section>
     <div class="parallax-one">
@@ -27,7 +35,7 @@
 
 <div class="col-xl-12"><span class="glyphicon glyphicon-option-horizontal"></span></div>
     
-        <div class=" container">
+        <div class=" container center">
             <div class="jumbotron">
                 <div class="container">
                     <div class="col-lg-6">
@@ -35,7 +43,7 @@
                             <p><a href="index.php">Retour à la liste des billets</a></p>
                     </div>
                     <div class="col-lg-6">
-                        <p><small><?= $post->date; ?></small></p>
+                        <p><small><?= "Posté le " . IntlDateFormatter::formatObject($postDate,$mask) . " . " ;?></small></p>
                         <p><em><?= $post->categorie; ?></em></p>
                     </div>  
                 </div>
@@ -65,7 +73,7 @@ if (!empty($_POST)){
 
 <div class="col-md-2"></div>     
          
-<div class="col-md-8 alert alert-success">
+<div class="col-md-8 alert alert-success center">
 		<?php
 		$totalComments = count($comments);
 		$commentWritted = 'Commentaire.';
@@ -113,6 +121,9 @@ if (!empty($_POST)){
                             <?php
         foreach($comments as $comment)
         {
+            
+            $commentDate = new DateTime($comment->commentDate);
+            
                             ?>
                       
                             <li class="media">
@@ -130,7 +141,7 @@ if (!empty($_POST)){
                                         </h4>
                                         
                                         <ul class="media-date text-uppercase reviews list-inline">
-                                            <li class="dd">le <?= $comment->commentDate; ?></li>
+                                            <li class="dd"><small><?= "Posté le " . IntlDateFormatter::formatObject($commentDate,$mask) . " . " ;?></small</small></li>
                                         </ul>
                                         <p class="media-comment">
                                             <?= $comment->content; ?>
@@ -228,6 +239,9 @@ if (!empty($_POST)){
                             
                             <?php
         foreach($comments as $comment)
+            
+            $commentDate = new DateTime($comment->commentDate);
+            
         {
                             ?>
                             <li class="media">
@@ -241,7 +255,7 @@ if (!empty($_POST)){
                                         </h4>
                                         
                                         <p class="media-date text-uppercase reviews list-inline">
-                                            <?= $comment->getCommentDate(); ?>
+                                            <small><?= "Posté le " . IntlDateFormatter::formatObject($commentDate,$mask) . " . " ;?></small>
                                         </p>
                                         <p class="media-comment">
                                         <?= $comment->getContent(); ?>

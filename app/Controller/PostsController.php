@@ -9,25 +9,52 @@ class PostsController extends AppController {
         $this->loadModel('comment');
         $this->loadModel('Category');
         $this->loadModel('report');
+        $this->loadModel('Setting');
     }
-
-    public function index(){
-        $posts = $this->Post->last();
+    
+    public function index() {
+        
         $categories = $this->Category->all();
-        $this->render('posts.index', compact('posts', 'categories'));
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
+        
+        // direction for the order by (ASC or DESC) for the post list.
+        $orderSelected = 'DESC';
+
+        if (isset($_POST['orderBy'])) {
+            $orderSelected = $_POST['orderBy'];
+            
+        }
+        
+        $posts = $this->Post->getAllPost($orderSelected);
+
+        $this->render('posts.index', compact('posts', 'categories', 'settings'));
     }
 
     public function category(){
+        
+        // direction for the order by (ASC or DESC) for the post list.
+        $orderSelected = 'DESC';
+
+        if (isset($_POST['orderBy'])) {
+            $orderSelected = $_POST['orderBy'];
+            
+        }
+        
         $categorie = $this->Category->find($_GET['id']);
-        $articles = $this->Post->lastByCategory($_GET['id']);
+        $articles = $this->Post->lastByCategory($_GET['id'], $orderSelected);
         $categories = $this->Category->all();
-        $this->render('posts.category', compact('articles', 'categorie', 'categories'));
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
+        $this->render('posts.category', compact('articles', 'categorie', 'categories', 'settings'));
     }
 
     public function show(){
         $post = $this->Post->findWithCategory($_GET['postId']);
         $comments = $this->comment->getComments($_GET['postId']);
-        $this->render('posts.show', compact('post','comments', 'pictureUrl'));
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
+        $this->render('posts.show', compact('post','comments', 'pictureUrl', 'settings'));
     }
     
     /**

@@ -1,7 +1,7 @@
 <div class="page-content inset">
     <div class="row">
         <div class="well lead">
-            <div class="well lead col-md-12">
+            <div class="well lead col-md-12 center">
                 <p> <?= $locationTitle ?> </p>
             </div>
         </div>
@@ -13,9 +13,14 @@
             
             <section class="comments">
                 
-                <?php foreach($comments as $comment): ?>
+                <?php foreach($comments as $comment):
+                    
+                    // use of IntlDateFormatter class to get a "French date"
+                    $mask = "EEEE d MMMM YYYY '&agrave;' HH:mm ";
+
+                    $commentDate = new DateTime($comment->commentDate);
             
-                <?php $postId = $comment->getPostId(); ?>
+                $postId = $comment->getPostId(); ?>
                 
                 <article class="comment">
                     <a class="comment-img" href="#non">
@@ -26,7 +31,7 @@
                             <?= $comment->getContent(); ?>
                         </div>
                         
-                        <div>
+                        <div class="pull-right">
                             <a href="?p=posts.show&postId=<?= $postId; ?>">
                             <button type="button" class="btn btn-success btn-xs" title="Voir le billet">
                                 <span class="glyphicon glyphicon-eye-open"></span>                        
@@ -57,7 +62,7 @@
                             
                         </div>
                         
-                        <p class="attribution">par <a href="#non"> <?= $comment->username; ?> </a> <?= $comment->commentDate; ?></p>
+                        <p class="attribution">par <a href="?p=users.show&userId=<?= $comment->userID; ?>" title="Voir le Profil"> <?= $comment->username; ?> </a> <?= "Posté le " . IntlDateFormatter::formatObject($commentDate,$mask) . " . " ;?></p>
                     </div>
                 </article>
                 <?php endforeach; ?>

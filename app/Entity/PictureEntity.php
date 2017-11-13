@@ -6,7 +6,7 @@ use Core\Entity\Entity;
 
 class PictureEntity Extends Entity {
     
-    // User id. -> @var integer
+    // Picture id. -> @var integer
     protected $id;	
     
     // Picture name. -> @var string

@@ -309,6 +309,15 @@ footer {
     max-width: 260px;
 }
 
+
+
+img {
+   
+    max-height: 190px;
+    max-width: 260px;
+}
+
+
                     /* END OF POST DESIGN */
 
                                 /* Titre principal/
@@ -475,12 +484,21 @@ input[type="file"]{
 }
 
                                 /* for the bootstrapp col */
-[class*="col-"], footer {
+footer {
 
     line-height: 40px;
 
      text-align: center; 
 
+}
+
+.center {
+    
+     text-align: center; 
+}
+
+.thumbPad {
+    padding: 10px;
 }
 
                                     /* _____________ADMIN___________________ */

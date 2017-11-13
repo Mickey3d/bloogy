@@ -8,12 +8,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a id="brand" class="navbar-brand" href="index.php">Bloogy</a>
+                    <a id="brand" class="navbar-brand" href="index.php"><?= $settings->siteName; ?></a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
+                <!--    <ul class="nav navbar-nav">
                         <li class="active"><a href="?p=posts.index">Blog</a></li>
-                    </ul>
+                    </ul> -->
                      <ul class="nav navbar-nav navbar-right">
 
 			

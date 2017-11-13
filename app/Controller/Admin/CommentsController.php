@@ -19,6 +19,7 @@ class CommentsController extends AppController{
         parent::__construct();
         $this->loadModel('comment');
         $this->loadModel('Post');
+        $this->loadModel('Setting');
         
     }
 
@@ -31,8 +32,11 @@ class CommentsController extends AppController{
         $reportedComments = $this->comment->getReportedComments();
         $posts = $this->Post->all();
         $locationTitle = 'Administration des Commentaires';
+        
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
 
-        $this->render('admin.comments.index', compact('comments', 'reportedComments', 'posts', 'locationTitle'));
+        $this->render('admin.comments.index', compact('comments', 'reportedComments', 'posts', 'locationTitle', 'settings'));
     }
 
     // Edit a comment and go back to the refresh comments list
@@ -51,9 +55,12 @@ class CommentsController extends AppController{
         $post = $this->comment->find($_GET['commentId']);
 
         $locationTitle = 'Edition d\'un commentaire';
+        
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
 
         $form = new BootstrapForm($post);
-        $this->render('admin.comments.edit', compact('form', 'locationTitle'));
+        $this->render('admin.comments.edit', compact('form', 'locationTitle','settings'));
     }
 
     // Delete a comment and go back to the refresh comments list

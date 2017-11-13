@@ -20,20 +20,34 @@ class PostTable extends Table {
             ORDER BY articles.date DESC
         ");
     }
+    
+    
+        /**
+     *
+     * @param $order way for the order by (ASC or DESC)
+     *
+     * @return array of PostEntity
+     */
+    public function getAllPost($order = 'DESC'){
+        $sql = "SELECT articles.id AS postId, articles.titre, articles.contenu, articles.date, categories.titre as categorie, articles.pictureUrl
+            FROM articles
+            LEFT JOIN categories ON category_id = categories.id
+            ORDER BY articles.date " . $order;
+        return $this->query($sql);
+    }
 
     /**
      * Récupere les derniers articles de la catégorie demandée
      * @param $category_id int
      * @return array
      */
-    public function lastByCategory($category_id){
-        return $this->query("
-            SELECT articles.id AS postId, articles.titre, articles.contenu, articles.date, categories.titre as categorie, articles.pictureUrl
+    public function lastByCategory($category_id, $order = 'DESC'){
+        
+        return $this->query("SELECT articles.id AS postId, articles.titre, articles.contenu, articles.date, categories.titre as categorie, articles.pictureUrl
             FROM articles
             LEFT JOIN categories ON category_id = categories.id
             WHERE articles.category_id = ?
-            ORDER BY articles.date DESC
-        ", [$category_id]);
+            ORDER BY articles.date " . $order , [$category_id]);
     }
 
     /**

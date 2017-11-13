@@ -7,6 +7,7 @@ class CategoriesController extends AppController {
     public function __construct(){
         parent::__construct();
         $this->loadModel('Category');
+        $this->loadModel('Setting');
     }
 
     // Index off all Categories
@@ -27,11 +28,14 @@ class CategoriesController extends AppController {
             }
         }
         
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
+        
         $locationTitle = 'Mode Création d\'une Catégorie';
         
         $form = new BootstrapForm($_POST);
         
-        $this->render('admin.category.edit', compact('form', 'locationTitle'));
+        $this->render('admin.category.edit', compact('form', 'locationTitle', 'settings'));
     }
 
     // Edit a Category
@@ -46,11 +50,14 @@ class CategoriesController extends AppController {
         }
         $categories = $this->Category->find($_GET['id']);
         
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
+        
         $locationTitle = 'Mode Edition d\'une Catégorie';
         
         $form = new BootstrapForm($categories);
         
-        $this->render('admin.category.edit', compact('form', 'locationTitle'));
+        $this->render('admin.category.edit', compact('form', 'locationTitle', 'settings'));
     }
 
     // Delete a Category

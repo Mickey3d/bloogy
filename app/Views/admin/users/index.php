@@ -1,4 +1,4 @@
-<div class="page-content inset">
+<div class="page-content inset center">
     <div class="row">
         <div class="well lead">
             <div class="well lead col-md-12">

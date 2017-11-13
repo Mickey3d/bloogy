@@ -25,7 +25,7 @@
         });
     </script>
     
-    <title><?= App::getInstance()->title; ?></title>
+    <title><?= $settings->siteName; ?></title>
 </head>
     
 <body>
@@ -40,12 +40,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a id="brand" class="navbar-brand" href="index.php">Bloogy</a>
+                    <a id="brand" class="navbar-brand" href="index.php"> Bloogy Admin</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="?p=posts.index">Blog</a></li>
-                    </ul>
+                    
                      <ul class="nav navbar-nav navbar-right">
 
 			
@@ -82,6 +80,10 @@
                          </li>
                     <?php } ?>
                     </ul>
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="?p=posts.index">Retour au Blog</a></li>
+                    </ul>
                 
             </div><!-- /.nav-collapse -->
         </div><!-- /.container -->
@@ -103,7 +105,7 @@ if ((isset($_SESSION['role'])) && ($_SESSION['role'] == 'admin')) {
                 <li><a href="index.php?p=admin.comments.index">Commentaires<span class="sub_icon glyphicon glyphicon-comment"></span></a></li>
                 <li><a href="?p=admin.categories.index">Catégories<span class="sub_icon glyphicon glyphicon-pushpin"></span></a></li>
                 <li><a href="?p=admin.users.index">Utilisateurs<span class="sub_icon glyphicon glyphicon-user"></span></a></li>
-                <li><a>Configuration<span class="sub_icon glyphicon glyphicon-cog"></span></a></li>
+                <li><a href="?p=admin.settings.edit">Configuration<span class="sub_icon glyphicon glyphicon-cog"></span></a></li>
             </ul>
       </div>
           
@@ -117,7 +119,7 @@ if ((isset($_SESSION['role'])) && ($_SESSION['role'] == 'admin')) {
       </div>
 
 <?php } else { ?>
-    <div class="col-lg-12">
+    <div class="col-lg-12 center">
         <h1> VOUS DEVEZ ÊTRE ADMINISTRATEUR POUR ACCEDER A CETTE PAGE ! </h1>
         
         <div class="col-lg-12 jumbotron"><div class="col-lg-3">

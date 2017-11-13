@@ -20,6 +20,7 @@ class CommentsController extends AppController{
         $this->loadModel('comment');
         $this->loadModel('Post');
         $this->loadModel('user');
+        $this->loadModel('Setting');
         
     }
 
@@ -50,9 +51,12 @@ class CommentsController extends AppController{
         $this->template = 'profile';
         
         $activeItem = "comments" ;
+        
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
                
         
-        $this->render('comments.user_comments_index', compact('userProfile', 'locationTitle', 'activeItem', 'comments'));
+        $this->render('comments.user_comments_index', compact('userProfile', 'locationTitle', 'activeItem', 'comments', 'settings'));
     }
     
 
@@ -82,9 +86,10 @@ class CommentsController extends AppController{
         $post = $this->comment->find($_GET['commentId']);
 
         $locationTitle = 'Edition d\'un commentaire';
-
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
         $form = new BootstrapForm($post);
-        $this->render('comments.user_comment_edit', compact('form', 'locationTitle', 'activeItem', 'userProfile'));
+        $this->render('comments.user_comment_edit', compact('form', 'locationTitle', 'activeItem', 'userProfile', 'settings'));
     }
 
     // Delete a comment and go back to the refresh comments list

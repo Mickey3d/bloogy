@@ -1,6 +1,14 @@
-<div class="page-content inset">
+<?php
+if(isset($categorie)){
+    
+    $categoryId = $categorie->id;
+}
+?>
+
+
+<div class="page-content inset ">
     <div class="row">
-        <div class="well lead">
+        <div class="well lead center">
             <div class="well lead col-md-12">
                 <p> <?= $locationTitle ?> </p>
                 <p>
@@ -15,14 +23,87 @@
                         
         <div class="col-md-1"></div>
                         
-                        
-        <!-- Billets List Container -->          
-                    
         <div class="container">
-            <div class="row">
+            
+            <div class="row col-lg-6 col-sm-12 pull-left">
+
+                <form action="?p=admin.posts.category" method="post" style="display: inline;">
+                    <span>Choisir la Catégorie  </span>   
+                    
+                 
+                    <select name="category">
+                  <?php foreach($categories as $categorie): ?>
+                    
+                            <option value="<?= $categorie->id; ?>"><?= $categorie->titre; ?></option>
+                        
+                            
+                  <?php 
+                        
+                        endforeach; ?>
+                    </select>
+                        
+                    <button type="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-pushpin"> Valider</span>
+                    </button>
+            
+                </form>
+            </div>
+            
+            <br>
+            
+            <div class="row col-lg-6 col-sm-12 pull-right">
+
+                    <form action="?p=admin.posts.<?= $calledFunction ?>" method="post" style="display: inline;">
+                        <span>Choisir l'ordre des Billets </span>
+            
+                        <?php
+    
+                        // Manage the value of the select SortBy and sort icon
+                        $AscSelected = '';
+                        $DescSelected = '';
+            
+                        if (isset($_POST['orderBy'])) {
+                            if ($_POST['orderBy'] == 'ASC') {
+                                $AscSelected = 'selected';
+                            } else {
+                                $DescSelected = 'selected';
+                            }
+                        } 
+                        ?>
+                        
+                        <?php
+                        if(isset($categorie)){ ?>
+                        
+                        <input id="categoryId" name="categoryId" type="hidden" value="<?= $categoryId ?>">
+                        
+                        <?php   
+                        }
+                        ?>
+                        
+                        
+                        <select name="orderBy">
+                            <option value="DESC" <?= $DescSelected ;?>>Les plus récents en premier</option>
+                            <option value="ASC" <?= $AscSelected ;?>>Les plus anciens en premier</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-sort"> Trier</span>
+                        </button>
+            
+                    </form>
+                </div>
+        </div>
+        <br>
+            
+        <div class="container">
+                        
+        <!-- Posts List Container -->          
+                    
+        <div class="row">
+            
+            
                 <div class="col-md-12">
                     <div class=" panel panel-default widget">
-                        <div class="panel-heading">
+                        <div class="panel-heading center">
                             <span class="glyphicon glyphicon-edit"></span>
                             <h3 class="panel-title">Liste des Billets</h3>
                             <span class="label label-info">
@@ -38,24 +119,54 @@
                                 <?php
                                 foreach($posts as $post)
                                 {
+                                    // use of IntlDateFormatter class to get a "French date"
+                                    $mask = "EEEE d MMMM YYYY '&agrave;' HH:mm ";
+
+                                    $postDate = new DateTime($post->date);
                                 ?>
                                         
                                 <li class="list-group-item">
                                     <div class="row">
                                         <div class="col-xs-2 col-md-1">
-                                            <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />
+                                             
+                                            <a href="?p=posts.show&postId=<?= $post->postId; ?>" class="thumbnail ">
+                                               
+                                                <?php
+        
+                                    if ($post->pictureUrl == '' ) {
+        
+                                            ?>
+        
+                                                <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" />
+    
+                                                <?php
+        
+                                    } else {
+        
+                                                ?>
+                                               
+                                                <img id="thumbnail-index-img" src="<?= $post->pictureUrl; ?>" alt="" class="img-circle img-responsive">
+                                           
+                                                <?php
+                                    }
+            
+                                                ?>
+                                            </a>
+                                            
+                                            
+                                           
                                         </div>
                                                 
                                         <div class="col-xs-10 col-md-10">
-                                            <div>
+                                            <div class="center">
                                                 <a href="?p=posts.show&postId=<?= $post->postId; ?>">  <?= $post->title; ?> </a>
-                                                <div class="mic-info">le <?= $post->date; ?></div>
+                                                <div class="mic-info"><?= "Posté le " . IntlDateFormatter::formatObject($postDate,$mask) . " . " ;?></div>
                                             </div>
                                                     
                                             <div class="comment-text"><?php echo $post->getExtrait() ?></div>
                                                     
                                                     
-                                            <div class="action">
+                                            <div class="action center">
                                                 <a href="?p=admin.posts.edit&postId=<?= $post->postId; ?>">
                                                     <button type="button" class="btn btn-primary btn-xs" title="Editer">
                                                         <span class="glyphicon glyphicon-pencil"></span>

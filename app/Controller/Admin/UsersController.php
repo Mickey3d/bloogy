@@ -13,15 +13,19 @@ class UsersController extends AppController{
     public function __construct(){
         parent::__construct();
         $this->loadModel('user');
+        $this->loadModel('Setting');
     }
 
     // Request all Users from User Model render-> Users Index View.
     public function index() {
 
         $users = $this->user->all('username');
+        
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
 
         $locationTitle = 'Administration des Utilisateurs';
-        $this->render('admin.Users.index', compact('users', 'locationTitle'));
+        $this->render('admin.Users.index', compact('users', 'locationTitle', 'settings'));
     }
     
     
@@ -60,8 +64,10 @@ class UsersController extends AppController{
         
         $passwordField = '<a href="?p=admin.users.newPassword&userId=' . $userEditedId . '" class="btn btn-danger"> Changer de Mot de Passe </a>' ;
         
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
         
-        $this->render('admin.users.edit', compact('form', 'locationTitle','passwordField', 'deleteButton', 'userEditedId'));
+        $this->render('admin.users.edit', compact('form', 'locationTitle','passwordField', 'deleteButton', 'userEditedId', 'settings'));
     }
 
     //Delete an User return -> index
@@ -99,7 +105,10 @@ class UsersController extends AppController{
         
         $passwordField = '<div class="form-group">' . $passInput . '</div>' ;
         
-        $this->render('admin.users.edit', compact('form', 'locationTitle', 'passwordField', 'deleteButton'));
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
+        
+        $this->render('admin.users.edit', compact('form', 'locationTitle', 'passwordField', 'deleteButton', 'settings'));
     }
 
     
@@ -143,8 +152,11 @@ class UsersController extends AppController{
         }
 
         $locationTitle = 'Modification du mot de passe. ';
+        
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
 
         $form = new BootstrapForm($_POST);
-        $this->render('admin.users.newPassword', compact('form', 'locationTitle', 'error', 'passEqualityTest', '$userNewPassId'));
+        $this->render('admin.users.newPassword', compact('form', 'locationTitle', 'error', 'passEqualityTest', '$userNewPassId', 'settings'));
     }   
 }

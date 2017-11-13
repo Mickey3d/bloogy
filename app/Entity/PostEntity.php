@@ -50,7 +50,7 @@ class PostEntity extends Entity {
 
     // Return an extract of the content
     public function getExtrait(){
-        $html = '<p>' . substr($this->contenu, 0, 200) . '...</p>';
+        $html = '<p>' . substr($this->contenu, 0, 450) . '...</p>';
         // $html .= '<p><a href="' . $this->Url . '">Voir la suite</a></p>';
         return $html;
     }

@@ -1,4 +1,4 @@
-<div class="page-content inset">
+<div class="page-content inset center">
     <div class="row">
         <div class="well lead">
             <div class="well lead col-md-12">
@@ -38,9 +38,12 @@
                                                             <?= $form->input('username', 'Nom ou Pseudo *', null, true); ?>
                                                         </div>
 
+                                                        <br>
+                                                        
                                                         <?= $passwordField; ?>
-
+                                                        
                                                         <div class="form-group">
+                                                            <br>
                                                             <?= $form->input('email', 'email *',['type' => 'email'], true); ?>
                                                         </div>
 
@@ -72,25 +75,25 @@
 
                         <div id="delete-user-modal" class="modal fade">
                             <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body">
-                                                            <p>Ëtes-vous certain de vouloir supprimer votre profil ? </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-
-                                                            <form action="?p=admin.users.delete" method="POST" style="display: inline;">
-
-                                                                <input type="hidden" name="id" value="<?= $userEditedId; ?>">                             
-                                                                <button type="submit" class="btn btn-danger" title="Delete">
-                                                                    Supprimer <span class="glyphicon glyphicon-trash"></span>
-                                                                </button>
-                                                            </form> 
-                                                        </div>
-                                                    </div><!-- /.modal-content -->
-                                                </div><!-- /.modal-dialog -->
-                                            </div><!-- /.modal -->
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <p>Ëtes-vous certain de vouloir supprimer votre profil ? </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                        
+                                        <form action="?p=admin.users.delete" method="POST" style="display: inline;">
+                                            
+                                            <input type="hidden" name="id" value="<?= $userEditedId; ?>">                             
+                                            <button type="submit" class="btn btn-danger" title="Delete">
+                                                Supprimer <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </form> 
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
 
                     </div>
                 </div>
