@@ -128,7 +128,9 @@ class UsersController extends AppController {
         if (!empty($_POST)) {
             
             $fields =  ['username' => $_POST['username'],
-                        'email' => $_POST['email']];
+                        'email' => $_POST['email'],
+                        'pictureUrl' => $_POST['pictureUrl']
+                       ];
 
             $result = $this->user->update($_SESSION['auth'], $fields);
 

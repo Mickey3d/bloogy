@@ -6,6 +6,21 @@
             <p class="well lead"> <?= $locationTitle ?> </p>
         </div>
         <section id="main-content">
+            
+            <?php 
+    if(isset($infoMessage) && $infoMessage != ''){ ?>
+            
+            <div class="tab-pane col-lg-12" id="add-comment-disabled">
+                <div class="alert alert-info alert-dismissible" role="alert">
+                    <button type="button" class="close center" data-dismiss="alert">
+                        <span aria-hidden="true">×</span><span class="sr-only">Fermer</span>                        
+                    </button>
+                    <strong><?= $infoMessage ?></strong>
+                </div>
+            </div>
+           
+    <?php } ?>    
+            
             <div class="col-md-1"></div>
             <div class="col-md-10 container">
                 
@@ -69,15 +84,16 @@
                             <br />
                         </div>
                         
-                        <button class="btn btn-success">Valider</button>
+                        <button id="normal-btn-success" class="btn btn-success">Valider</button>
                         
                         <a class="btn btn-danger" href="?p=admin.posts.index">Annuler</a>
                                           
                         <br />
                         <br />
                         <div class="col-md-12 well lead"></div>
+                        </div>
                     </form>
-                </div>
+                </div>         
             </div>
             <!-- /.container -->
         </section>  

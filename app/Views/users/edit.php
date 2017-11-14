@@ -27,11 +27,23 @@
                                                     <div class="col-md-4 text-center">
                                                         <div>
                                                             <div id="img-preview-block" class="img-circle avatar avatar-    original    center-block" style="background-size:cover; 
-                                                            background-image:url(http://robohash.org/sitsequiquia.png?  size=120x120)"> </div>
+                                                        background-image:url(
+                                                        <?php 
+                                                        if(isset($userProfile) && $userProfile->pictureUrl != ''){
+                                                            echo($userProfile->pictureUrl);
+                                                        }else {
+                                                            echo('http://icons.iconarchive.com/icons/hopstarter/halloween-avatars/256/Mask-3-icon.png');
+                                                        } ?>
+                                                        )">
+                                                        </div>
                                                             <br> 
                                                             <span class="btn btn-link btn-file">Changer d'Avatar <input type="file"     id="upload-img"></span>
                                                         </div>
+                                                        <div class="form-group ">
+                                                            <?= $form->input('pictureUrl', 'Lien Url de l\'Avatar'); ?>
+                                                        </div>
                                                     </div>
+                                                     
                                                     <div class="col-md-8">
 
                                                         <div class="form-group">
@@ -46,6 +58,8 @@
                                                             <br>
                                                             <?= $form->input('email', 'email *',['type' => 'email'], true); ?>
                                                         </div>
+                                                        
+                                                       
 
                                                     </div>
                                                 </div>

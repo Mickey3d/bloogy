@@ -24,6 +24,9 @@ class UserEntity Extends Entity {
     // User info. -> @var string
     protected $info;
     
+    // User info. -> @var string
+    protected $pictureUrl;
+    
 
 
 // GETTER
@@ -49,6 +52,10 @@ class UserEntity Extends Entity {
     
     public function getInfo() {
         return $this->info;
+    }
+    
+    public function getPictureUrl() {
+        return $this->pictureUrl;
     }
 
 }

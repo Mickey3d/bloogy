@@ -37,7 +37,8 @@ class UsersController extends AppController{
             $fields =  ['username' => $_POST['username'],
                         'email' => $_POST['email'],
                         'role' => $_POST['role'],
-                        'isLocked' => 0];
+                        'isLocked' => 0,
+                        'pictureUrl' => $_POST['pictureUrl']];
 
             if (isset($_POST['isLocked']) && $_POST['isLocked']=='on') 
             {
@@ -60,6 +61,8 @@ class UsersController extends AppController{
         
         $userEditedId = $_GET['userId'];
         
+        $userProfile = $this->user->getUsername($_GET['userId']);
+        
         $deleteButton = '<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-user-modal"> Supprimer le Profil </button>';
         
         $passwordField = '<a href="?p=admin.users.newPassword&userId=' . $userEditedId . '" class="btn btn-danger"> Changer de Mot de Passe </a>' ;
@@ -67,7 +70,7 @@ class UsersController extends AppController{
         $settingsId = 1;
         $settings = $this->Setting->find($settingsId);
         
-        $this->render('admin.users.edit', compact('form', 'locationTitle','passwordField', 'deleteButton', 'userEditedId', 'settings'));
+        $this->render('admin.users.edit', compact('form', 'locationTitle','passwordField', 'deleteButton', 'userEditedId', 'userProfile', 'settings'));
     }
 
     //Delete an User return -> index
@@ -88,7 +91,8 @@ class UsersController extends AppController{
                 'username' => $_POST['username'],
                 'email' => $_POST['email'],
                 'role' => $_POST['role'],
-                'password' => sha1($_POST['password'])
+                'password' => sha1($_POST['password']),
+                'pictureUrl' => $_POST['pictureUrl']
             ]);
             if($result){
                 return $this->index();

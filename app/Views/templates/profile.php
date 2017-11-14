@@ -48,7 +48,13 @@
                             <div class="profile-sidebar">
                                 <!-- SIDEBAR USERPIC -->
                                 <div class="profile-userpic">
-                                    <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+                                    <img src="
+                                              <?php 
+                                              if(isset($userProfile) && $userProfile->pictureUrl != ''){
+                                                  echo($userProfile->pictureUrl);
+                                              }else {
+                                                  echo('http://icons.iconarchive.com/icons/hopstarter/halloween-avatars/256/Mask-3-icon.png');
+                                              } ?>" alt="">
                                 </div>
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
@@ -114,6 +120,8 @@
     <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="js/navbar.js"></script>
+    <script src='lib/message.js'></script>
+    <script src='lib/buttonplus.js.js'></script>
 </body>
 </html>
 

@@ -21,7 +21,7 @@ class CommentTable extends Table{
      */
     public function getComments($id){
 		return $this->query("		
-		SELECT comments.id AS commentId, content, postID, userID, username, commentDate
+		SELECT comments.id AS commentId, content, postID, userID, username, commentDate, users.pictureUrl
 		FROM comments
         INNER JOIN users ON userID = users.id
 		WHERE postID = ?
@@ -36,7 +36,7 @@ class CommentTable extends Table{
      */
     public function getUserComments($userID){
 		return $this->query("		
-		SELECT comments.id AS commentId, content, postID, userID, username, commentDate
+		SELECT comments.id AS commentId, content, postID, userID, username, commentDate, users.pictureUrl
 		FROM comments
         INNER JOIN users ON userID = users.id
 		WHERE userID = ?
@@ -75,7 +75,7 @@ class CommentTable extends Table{
      */
     public function getAllComments(){
 	    return $this->query("
-                            SELECT comments.id AS commentId, content, postID, userID, username, commentDate
+                            SELECT comments.id AS commentId, content, postID, userID, username, commentDate, users.pictureUrl
                             FROM comments
                             INNER JOIN users ON userID = users.id
                             GROUP BY postID, content
@@ -90,7 +90,7 @@ class CommentTable extends Table{
 	    
         $noCount = 0;
         return $this->query("
-                            SELECT comments.id as commentId, content, username, comments.userID, comments.postID, count(reports.commentID) AS reported FROM `comments`
+                            SELECT comments.id as commentId, content, username, comments.userID, comments.postID, users.pictureUrl,  count(reports.commentID) AS reported FROM `comments`
                             LEFT JOIN reports ON comments.id = reports.commentID
                             LEFT JOIN users on comments.userID = users.id
                             GROUP BY comments.id, content

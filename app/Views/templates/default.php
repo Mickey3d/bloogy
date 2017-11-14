@@ -62,5 +62,7 @@
     <script src="lib/jquery/jquery.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="js/navbar.js"></script>
+    <script src='lib/message.js'></script>
+    <script src='lib/buttonplus.js.js'></script>
 </body>
 </html>

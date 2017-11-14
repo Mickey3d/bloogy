@@ -216,7 +216,7 @@ if(isset($categorie)){
         <?php
                 }else{
                     ?>
-        <li><a href="?p=admin.posts.index&page=<?= $i ?>&orderBy=<?= $orderSelected ?>"><?= $i ?></a></li>
+        <li><a href="?p=admin.posts.<?= $calledFunction ?>&page=<?= $i ?>&orderBy=<?= $orderSelected ?>"><?= $i ?></a></li>
         
         <?php
                 }

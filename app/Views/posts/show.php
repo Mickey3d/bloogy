@@ -23,7 +23,7 @@
         <?= $post->content; ?>    
                     
     </article>
-    <p class="line-break margin-top-10"></p>
+    <p class="line-break margin-top-10 center"></p>
   </div>
 </section>
   
@@ -33,7 +33,7 @@
 <!-- MAIN CONTENT --------------------------------------------------------------------------------------------->
 
 
-<div class="col-xl-12"><span class="glyphicon glyphicon-option-horizontal"></span></div>
+<div class="col-xl-12 center"><span class="glyphicon glyphicon-option-horizontal"></span></div>
     
         <div class=" container center">
             <div class="jumbotron">
@@ -117,71 +117,71 @@ if (!empty($_POST)){
                 <div class="tab-content">
                     <div class="tab-pane active" id="comments-logout">                
                         <ul class="media-list">
-
+                            
                             <?php
-        foreach($comments as $comment)
-        {
+        
+        if(isset($comments)) {
+            foreach($comments as $comment){
             
-            $commentDate = new DateTime($comment->commentDate);
+                $commentDate = new DateTime($comment->commentDate);
             
+                if(isset($comment)) {
                             ?>
-                      
                             <li class="media">
                                 <a class="pull-left" href="#">
-                                    <img class="media-object img-circle" src="img/icon-avatar.jpg" alt="profile">
+                                    <img class="media-object img-circle" src="
+                                                                              <?php 
+                                                        if(isset($comment->pictureUrl) && $comment->pictureUrl != ''){
+                                                            echo($comment->pictureUrl);
+                                                        }else {
+                                                            echo('http://icons.iconarchive.com/icons/hopstarter/halloween-avatars/256/Mask-3-icon.png');
+                                                        } ?>" alt="profile">
                                 </a>
                                 <div class="media-body">
                                     <div class="well well-lg">
                                         <h4 class="media-heading text-uppercase reviews">
-                                            par : 
-                                            <a href="?p=users.show&userId=<?= $comment->userID; ?>" title="Voir le Profil">
-                                                <?= $comment->username; ?>
-                                                <span class="glyphicon glyphicon-chevron-right"></span>    
-                                            </a>
+                                            <?= $comment->getUsername(); ?>
                                         </h4>
                                         
-                                        <ul class="media-date text-uppercase reviews list-inline">
-                                            <li class="dd"><small><?= "Posté le " . IntlDateFormatter::formatObject($commentDate,$mask) . " . " ;?></small</small></li>
-                                        </ul>
+                                        <p class="media-date text-uppercase reviews list-inline">
+                                            <small><?= "Posté le " . IntlDateFormatter::formatObject($commentDate,$mask) . " . " ;?></small>
+                                        </p>
                                         <p class="media-comment">
-                                            <?= $comment->content; ?>
+                                        <?= $comment->getContent(); ?>
                                         </p>
                                         <p>
-            <?php                            
+                                            <?php                            
             
             // If the user already report this comment ?
-			$reportId = $this->report->isReported($comment->commentId, $_SESSION['auth']);
+            $reportId = $this->report->isReported($comment->commentId, $_SESSION['auth']);
 			
-			if ($reportId) {
-				$param = "&reportId=" . $reportId . "&postId=" . $post->getPostId(); ?>
-				<span class="glyphicon glyphicon-eye-close"></span>
-				<a href="?p=reports.cancel<?php echo $param ; ?>"> Annuler le signalement</a>	
-				<?php
-			} else {
-				$param = "&postId=" . $post->getPostId(). "&commentId=". $comment->getCommentId() . "&comAuthorId=" . $comment->getUserId();				
-			?>
-				<span class="glyphicon glyphicon-eye-open"></span>
-				<a href="?p=reports.add<?php echo $param ; ?>"> Signaler le commentaire</a>
+            if ($reportId) {
+                $param = "&reportId=" . $reportId . "&postId=" . $post->getPostId(); ?>
+                                            <span class="glyphicon glyphicon-eye-close"></span>
+                                            <a href="?p=reports.cancel<?php echo $param ; ?>"> Annuler le signalement</a>	
+                                            <?php
+            } else {
+                $param = "&postId=" . $post->getPostId(). "&commentId=". $comment->getCommentId() . "&comAuthorId=" . $comment->getUserId();				
+                                            ?>
+                                            <span class="glyphicon glyphicon-eye-open"></span>
+                                            <a href="?p=reports.add<?php echo $param ; ?>"> Signaler le commentaire</a>
 				
-			<?php
-			} ?> 	
-                                        
-                                        
-                                        
-                                        
+                                            <?php
+            } ?> 	
                                         </p>
+                                        	
+                                        
                                     </div>
-                                    
-                                    
-                                    
                                 </div>     
                             </li>
 
                             <?php
         }
-                            ?>                       
-                    
-                        </ul> 
+        }
+                }
+                            ?>
+                        
+                        </ul>
                     </div>
                     <div class="tab-pane" id="add-comment">
                         <form method="POST" class="form-horizontal"> 
@@ -238,15 +238,23 @@ if (!empty($_POST)){
                         <ul class="media-list">
                             
                             <?php
-        foreach($comments as $comment)
+        
+        if(isset($comments)) {
+        foreach($comments as $comment){
             
             $commentDate = new DateTime($comment->commentDate);
             
-        {
+         if(isset($comment)) {
                             ?>
                             <li class="media">
                                 <a class="pull-left" href="#">
-                                    <img class="media-object img-circle" src="img/icon-avatar.jpg" alt="profile">
+                                    <img class="media-object img-circle" src="
+                                                                              <?php 
+                                                        if(isset($comment->pictureUrl) && $comment->pictureUrl != ''){
+                                                            echo($comment->pictureUrl);
+                                                        }else {
+                                                            echo('http://icons.iconarchive.com/icons/hopstarter/halloween-avatars/256/Mask-3-icon.png');
+                                                        } ?>" alt="profile">
                                 </a>
                                 <div class="media-body">
                                     <div class="well well-lg">
@@ -271,6 +279,8 @@ if (!empty($_POST)){
 
                             <?php
         }
+        }
+                }
                             ?>
                         
                         </ul>
@@ -297,5 +307,6 @@ if (!empty($_POST)){
 <div class="page-header text-center">
     <h3 class="reviews"><span class="glyphicon glyphicon-magnet"></span> Bloogy </h3>
 </div>
-    
+
+
 

@@ -5,8 +5,13 @@
             <div class="frontTitle">
                 <?= $user->username; ?>
             </div>
-            <div id="img-preview-block" class="img-circle avatar avatar-    original    center-block" style="background-size:cover; 
-                                                            background-image:url(http://robohash.org/sitsequiquia.png?  size=120x120)"> 
+            <div id="img-preview-block" class="img-circle avatar avatar-original center-block" style="background-size:cover; background-image:url(
+            <?php 
+                if(isset($user) && $user->pictureUrl != ''){
+                    echo($user->pictureUrl);
+                }else {
+                    echo('http://icons.iconarchive.com/icons/hopstarter/halloween-avatars/256/Mask-3-icon.png');
+                } ?>)"> 
             </div>
             <br> 
             <div class="frontLocation">

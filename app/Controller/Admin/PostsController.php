@@ -68,7 +68,10 @@ class PostsController extends AppController {
     
     public function category(){
         
-        // direction for the order by (ASC or DESC) for the post list.
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
+        
+        // Catdegory Id.
         $categoryId = '';
         
         if (isset($_POST['category'])) {
@@ -85,19 +88,59 @@ class PostsController extends AppController {
             $categoryId = $_POST['categoryId'];
         }
         
+        if (isset($_GET['page']))
+        {
+            $page = $_GET['page']; // On récupère le numéro de la page indiqué dans l'adresse
+        }
+        else // La variable n'existe pas, c'est la première fois qu'on charge la page
+        {
+            $page = 1; // On se met sur la page 1 (par défaut)
+        }
         
-        $calledFunction = 'category';
+        
+        // On place dans une variable le nombre de billet souhaité par page
+        $nbrOfPostsPerPage = $settings->nbrPostPerPage;
+        
+        // On définit la clause de LIMIT
+        $limit = ($page - 1) * $nbrOfPostsPerPage;
+        
+        // On définit la clause de OFFSET
+        $offset = $nbrOfPostsPerPage;
+        
+        
+        if (isset($_POST['category']))
+        {
+            $catId = $_POST['category'];
+            $calledFunction = "category&categoryId=". $catId . "&";
+        }
+        else
+        {
+            $calledFunction = 'category';
+        }
+        
+        if (isset($_GET['categoryId'])) {
+            
+            $catId = $_GET['categoryId'];
+            $categoryId = $_GET['categoryId'];
+            $calledFunction = "category&categoryId=". $catId . "&";
+        }
+        
         $categorie = $this->Category->find($categoryId);
         $categorieTitle = $categorie->titre;
         
-        $posts = $this->Post->lastByCategory($categoryId, $orderSelected);
+        $posts = $this->Post->lastByCategory($categoryId, $orderSelected, $limit, $offset);
+        
+        // On récupère le nombre total de billets
+        $totalPost = $this->Post->getAllPostByCategory($categoryId);
+        $totalPostsCount = count($totalPost);
+        
+        // On calcule le nombre de pages à créer
+        $nbrOfPages = ceil($totalPostsCount/$nbrOfPostsPerPage) ;
+        
         $categories = $this->Category->all();
-        $locationTitle = 'Administration des Billets -> '.$categorieTitle;
-        $settingsId = 1;
-        $settings = $this->Setting->find($settingsId);
+        $locationTitle = 'Administration des Billets -> '.$categorieTitle;        
         
-        
-        $this->render('admin.posts.index', compact('posts', 'categorie', 'categories', 'locationTitle', 'calledFunction', 'settings'));
+        $this->render('admin.posts.index', compact('posts', 'categorie', 'categories', 'locationTitle', 'calledFunction', 'settings', 'totalPostsCount', 'totalPost', 'orderSelected', 'nbrOfPages', 'page'));
     }
 
 
@@ -208,7 +251,7 @@ class PostsController extends AppController {
             else
             {
     // Sinon on affiche une erreur pour le champ vide
-                $message = 'Veuillez remplir le formulaire svp !';
+                $message = '';
             }
         
             
@@ -229,8 +272,9 @@ class PostsController extends AppController {
             
                 
             if($result){
-                
                 header('Location: index.php?p=admin.posts.index');
+                $infoMessage = "Création du billet et enregistrement dans la base de donnée OK";
+                
             }
         }
             
@@ -352,7 +396,7 @@ class PostsController extends AppController {
             else
             {
     // Sinon on affiche une erreur pour le champ vide
-                $message = 'Veuillez remplir le formulaire svp !';
+                $message = '';
             }
         
             
@@ -373,7 +417,9 @@ class PostsController extends AppController {
                 
             ]);
             if($result){
-                header('Location: index.php?p=admin.posts.index');
+                
+                header('Refresh:5;Location: index.php?p=admin.posts.index');
+                $infoMessage = "Edition du billet et mise à jour de la base de donnée OK";
             }
          }
             
@@ -389,7 +435,7 @@ class PostsController extends AppController {
         $settingsId = 1;
         $settings = $this->Setting->find($settingsId);
         
-        $this->render('admin.posts.edit', compact('post', 'categories', 'form', 'locationTitle','message', 'nomImage', 'pictureUrl', 'settings'));
+        $this->render('admin.posts.edit', compact('post', 'categories', 'form', 'locationTitle','message', 'nomImage', 'pictureUrl', 'settings', 'infoMessage'));
     }
 
     // Delete a Post

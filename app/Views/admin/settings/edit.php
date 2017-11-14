@@ -23,7 +23,6 @@
                         <div class="form-group">
                             <?= $form->input('nbrPostPerPage', 'Nombre de Billets à afficher par Page'); ?>
                         </div>
-                        nbrPostPerPage
                         <button class="btn btn-success">Valider</button>
                                           
                         <a class="btn btn-danger" href="?p=admin.posts.index">Annuler</a>

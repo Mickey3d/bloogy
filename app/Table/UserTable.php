@@ -23,7 +23,7 @@ class UserTable extends Table
      */
     public function getUsers(){
 		return $this->query("		
-		SELECT users.id as userId, username, email, password, role, info
+		SELECT users.id as userId, username, email, password, role, info, pictureUrl
 		FROM users");
     }
     
@@ -34,7 +34,7 @@ class UserTable extends Table
      */
     public function getUsername($id){
 		return $this->query("		
-		SELECT users.id as userId, username, email, role, info
+		SELECT users.id as userId, username, email, role, info, pictureUrl
 		FROM users
         WHERE id = ?", [$id], true);
     }
