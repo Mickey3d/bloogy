@@ -20,6 +20,10 @@
                         <div class="form-group">
                             <?= $form->input('mailContact', 'Email de Contact *',['type' => 'email'], true); ?>
                         </div>
+                        <div class="form-group">
+                            <?= $form->input('nbrPostPerPage', 'Nombre de Billets à afficher par Page'); ?>
+                        </div>
+                        nbrPostPerPage
                         <button class="btn btn-success">Valider</button>
                                           
                         <a class="btn btn-danger" href="?p=admin.posts.index">Annuler</a>

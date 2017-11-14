@@ -5,8 +5,7 @@ if(isset($categorie)){
 }
 ?>
 
-
-<div class="page-content inset ">
+<div class="page-content col-lg-12 inset ">
     <div class="row">
         <div class="well lead center">
             <div class="well lead col-md-12">
@@ -21,11 +20,11 @@ if(isset($categorie)){
             </div>
         </div>
                         
-        <div class="col-md-1"></div>
+        <div class="col-lg-1"></div>
                         
         <div class="container">
             
-            <div class="row col-lg-6 col-sm-12 pull-left">
+            <div class="row col-lg-5 col-sm-12 center">
 
                 <form action="?p=admin.posts.category" method="post" style="display: inline;">
                     <span>Choisir la Catégorie  </span>   
@@ -43,7 +42,7 @@ if(isset($categorie)){
                     </select>
                         
                     <button type="submit" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-pushpin"> Valider</span>
+                        <span class="glyphicon glyphicon-pushpin"> Valider </span>
                     </button>
             
                 </form>
@@ -51,7 +50,7 @@ if(isset($categorie)){
             
             <br>
             
-            <div class="row col-lg-6 col-sm-12 pull-right">
+            <div class="row col-lg-5 col-sm-12 center">
 
                     <form action="?p=admin.posts.<?= $calledFunction ?>" method="post" style="display: inline;">
                         <span>Choisir l'ordre des Billets </span>
@@ -200,3 +199,33 @@ if(isset($categorie)){
         </div>                       
     </div>
 </div>
+
+<div class="container center">
+    <ul class="pagination">
+        <?php
+
+        // Boucle For pour écrire les liens vers chacune des pages
+
+        for ($i = 1 ; $i <= $nbrOfPages ; $i++)
+        {
+            if(isset($page)){
+                if($page == $i){
+                    ?>
+                    <li class="active"><a href="?p=admin.posts.index&page=<?= $i ?>&orderBy=<?= $orderSelected ?>"><?= $i ?><span class="sr-only">(current)</span></a></li>
+                
+        <?php
+                }else{
+                    ?>
+        <li><a href="?p=admin.posts.index&page=<?= $i ?>&orderBy=<?= $orderSelected ?>"><?= $i ?></a></li>
+        
+        <?php
+                }
+            }
+        ?>
+              
+        <?php
+        }   ;
+        ?>
+    </ul>
+</div>
+

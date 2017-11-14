@@ -21,7 +21,8 @@ class SettingEntity Extends Entity {
     // Mail Contact for the site. -> @var string
     protected $mailContact;
 
-    
+    // Number of post to show per page on the Homepage, categories pages, post admin index  -> @var int
+    protected $nbrPostPerPage;
 
 
 // GETTER
@@ -45,4 +46,8 @@ class SettingEntity Extends Entity {
         return $this->mailContact;
     }
 
+    public function getNbrPostPerPage() {
+        return $this->nbrPostPerPage;
+    }
+   
 }

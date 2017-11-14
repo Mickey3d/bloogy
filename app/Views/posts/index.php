@@ -11,104 +11,96 @@
             <div class="row">
                 <div class="blog-title col-xs-12 center"><?= $settings->logoSubtitle; ?></div>
             </div>
-            <div class="row">
-                <div class="blog-description  col-xs-12 col-md-5 col-lg-4"><?= $settings->slogan; ?></div>
-                
-                <div class="row pull-right">
+        <div class="row">
+            <div class="blog-description  col-xs-12 col-md-6 col-lg-7"><?= $settings->slogan; ?></div>
+            <div class="row col-lg-5 col-sm-10 center">
 
-                    <form action="?p=posts.index" method="post" style="display: inline;">
-                        <span>Choisir l'ordre des Billets </span>
+                <form action="?p=posts.index" method="post" style="display: inline;">
+                    <span>Choisir l'ordre des Billets </span>
             
-                        <?php
-                        // Manage the value of the select SortBy and sort icon
-                        $AscSelected = '';
-                        $DescSelected = '';
+                    <?php
+                    // Manage the value of the select SortBy and sort icon
+                    $AscSelected = '';
+                    $DescSelected = '';
             
-                        if (isset($_POST['orderBy'])) {
-                            if ($_POST['orderBy'] == 'ASC') {
-                                $AscSelected = 'selected';
-                            } else {
-                                $DescSelected = 'selected';
-                            }
-                        } 
-                        ?>
-                        <select name="orderBy">
-                            <option value="DESC" <?= $DescSelected ;?>>Les plus récents en premier</option>
-                            <option value="ASC" <?= $AscSelected ;?>>Les plus anciens en premier</option>
-                        </select>
-                        <button type="submit" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-sort"> Trier</span>
-                        </button>
+                    if (isset($_POST['orderBy'])) {
+                        if ($_POST['orderBy'] == 'ASC') {
+                            $AscSelected = 'selected';
+                        } else {
+                            $DescSelected = 'selected';
+                        }
+                    } 
+                    ?>
+                    <select name="orderBy">
+                        <option value="DESC" <?= $DescSelected ;?>>Les plus récents en premier</option>
+                        <option value="ASC" <?= $AscSelected ;?>>Les plus anciens en premier</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-sort"> Trier</span>
+                    </button>
             
-                    </form>
-                </div>
+                </form>
+            </div>
         </div>   
     </div>
 </div>
 
-
 <div class="container">
-        <section id='blog-show'>
-            <div class="container">
+    <section id='blog-show'>
+        <div class="container">
                         
-                <div class="col-sm-8"> 
-                    <?php
-                    foreach($posts as $post)
-                        {
-		
-                        // use of IntlDateFormatter class to get a "French date"
-                        $mask = "EEEE d MMMM YYYY '&agrave;' HH:mm ";
+            <div class="col-sm-8"> 
+                <?php
+                foreach($posts as $post): 
+                ?>  
+                <div class="row">
+                    <div class="span12">
+                        <div class="row center">
+                            <div class="span8">
+                                <h4><strong><a href="<?= $post->Url ?>"><?= $post->title ?></a></strong></h4>
+                            <p><em><?= $post->categorie; ?></em></p>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="span2 pull-left thumbPad">
+                            <a href="?p=posts.show&postId=<?= $post->postId; ?>" class="thumbnail postThumbnail">  
 
-                        $postDate = new DateTime($post->date);
+                                <?php
 
-                    ?>
-                    
-                        <div class="row">
-                            <div class="span12">
-                                <div class="row">
-                                    <div class="span8  center">
-                                        <h4><strong><a href="?p=posts.show&postId=<?= $post->postId; ?>"><?= $post->title ?></a></strong></h4>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="span2 pull-left thumbPad">
-                                        <a href="?p=posts.show&postId=<?= $post->postId; ?>" class="thumbnail postThumbnail">
-                                               
-                                            <?php
+                                // use of IntlDateFormatter class to get a "French date"
+                                $mask = "EEEE d MMMM YYYY '&agrave;' HH:mm ";
+
+                                $postDate = new DateTime($post->date);   
+
+                                if ($post->pictureUrl == '' ) {
+                                ?>
         
-                            if ($post->pictureUrl == '' ) {
-        
-                                            ?>
-        
-                                            <img src="http://placehold.it/260x180" alt="">
+                                <img src="http://placehold.it/260x180" alt="">
     
-                                            <?php
+                                <?php
         
-                            } else {
+                                } else {
         
-                                            ?>
+                                ?>
                                             
-                                            <img id="thumbnail-index-img" src="<?= $post->pictureUrl; ?>" alt="">
-                                           
-                                            <?php
-                            }
+                                <img src="<?= $post->pictureUrl; ?>" alt="">
             
-                                            ?>
-                                        </a>
-                                    </div>
-                                    <div class="span10 ">      
-                                    
-                                            <?= $post->extrait; ?>
-                                        
-                                        <p><a class="btn btn-success marginBottom10 pull-right" href="?p=posts.show&postId=<?= $post->postId; ?>">Lire plus...</a> </p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="span8">
-                                        <p></p>
-                                        <p>
-                                            | <i class="icon-calendar"></i> <em><small><?= "Posté le " . IntlDateFormatter::formatObject($postDate,$mask) . " . " ;?> </small></em>
-                                            <p class="pull-right"><em><?= $post->categorie; ?></em></p>
+                                <?php
+                                }
+                                ?>
+                            </a>
+                        </div>
+                        <div class="span10">          
+                            <?= $post->extrait; ?>   
+                            <p><a class="btn btn-success marginBottom10 pull-right" href="?p=posts.show&postId=<?= $post->postId ?>">Lire plus...</a> </p>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="span8">
+                            <p></p>
+                            <p>
+                                            
+                                | <i class="icon-calendar"></i> <em><small><?= "Posté le " . IntlDateFormatter::formatObject($postDate,$mask) . " . " ;?></small></em>
                                         <!--
                                             | <i class="icon-user"></i> by <a href="#">Jean</a> 
                                             | <i class="icon-comment"></i> <a href="#">3 Comments</a>
@@ -117,30 +109,52 @@
                                             <a href="#"><span class="label label-info">UI</span></a> 
                                             <a href="#"><span class="label label-info">growth</span></a>
                              -->   
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            </p>
                         </div>
-                        <hr>
-
-                    <?php
-                    }
-                    ?> 
+                    </div>                     
+                    </div>
+                </div>      
+                <?php endforeach; ?> 
+                <div class="center">
+                    <ul class="pagination">
+                        
+                        <?php
+                        // Boucle For pour écrire les liens vers chacune des pages
+                        for ($i = 1 ; $i <= $nbrOfPages ; $i++)
+                        {
+                            if(isset($page)){
+                                if($page == $i){
+                        ?>
+                        <li class="active"><a href="?p=posts.index&page=<?= $i ?>&orderBy=<?= $orderSelected ?>"><?= $i ?><span class="sr-only">(current)</span></a></li>
+                   
+                        <?php
+                                }else{
+                        ?>
+                        <li><a href="?p=posts.index&page=<?= $i ?>&orderBy=<?= $orderSelected ?>"><?= $i ?></a></li>
+                        
+                        <?php
+                                }
+                            }
+                        ?>  
+                        <?php
+                        } ;
+                        ?>
+                    </ul>
+                </div>            
             </div>
-            
-            <div class="col-sm-4">
+            <div class="container col-sm-4">
                 <ul> 
-                  <?php foreach($categories as $categorie): ?>
-
-                  <li><a href="index.php?p=posts.category&id=<?= $categorie->id; ?> "><?= $categorie->titre; ?></a></li>
-		      
-                  <?php endforeach; ?>
-		        </ul>
+                    <?php foreach($categories as $categorie): ?>
+        
+                    <li><a href="index.php?p=posts.category&id=<?= $categorie->id; ?> "><?= $categorie->titre; ?></a></li>
+		        
+                    <?php endforeach; ?>
+                </ul>
             </div>
-
-                <div class="col-md-12 gap10"></div>
-            </div>
-        </section>		
-    </div>
+            <hr>
+        </div>
+    </section>
+</div>
+   
+<div class="col-md-12 gap10"></div>
 

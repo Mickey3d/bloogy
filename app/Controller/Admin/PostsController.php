@@ -17,23 +17,53 @@ class PostsController extends AppController {
     // Indes of all Posts
     public function index(){
         
-         // direction for the order by (ASC or DESC) for the post list.
+        
+        $categories = $this->Category->all();
+        $settingsId = 1;
+        $settings = $this->Setting->find($settingsId);
+        
+        // direction for the order by (ASC or DESC) for the post list.
         $orderSelected = 'DESC';
 
         if (isset($_POST['orderBy'])) {
             $orderSelected = $_POST['orderBy'];
-            
         }
         
+        if (isset($_GET['orderBy'])) {
+            $orderSelected = $_GET['orderBy'];
+        }
+        
+        if (isset($_GET['page']))
+        {
+            $page = $_GET['page']; // On récupère le numéro de la page indiqué dans l'adresse
+        }
+        else // La variable n'existe pas, c'est la première fois qu'on charge la page
+        {
+            $page = 1; // On se met sur la page 1 (par défaut)
+        }
+        
+        // On place dans une variable le nombre de billet souhaité par page
+        $nbrOfPostsPerPage = $settings->nbrPostPerPage;
+        
+        // On définit la clause de LIMIT
+        $limit = ($page - 1) * $nbrOfPostsPerPage;
+        
+        // On définit la clause de OFFSET
+        $offset = $nbrOfPostsPerPage;
+        
+        $posts = $this->Post->getAllSelectedPost($orderSelected, $limit, $offset);
+        
+        // On récupère le nombre total de billets
+        $totalPost = $this->Post->getAllPost();
+        $totalPostsCount = count($totalPost);
+        
+        // On calcule le nombre de pages à créer
+        $nbrOfPages = ceil($totalPostsCount/$nbrOfPostsPerPage) ;
+        
         $calledFunction = 'index';
-        $categories = $this->Category->all();
-        $posts = $this->Post->getAllPost($orderSelected);
         $locationTitle = 'Administration des Billets';
         
-        $settingsId = 1;
-        $settings = $this->Setting->find($settingsId);
-        
-        $this->render('admin.posts.index', compact('posts', 'locationTitle', 'categories', 'calledFunction', 'settings'));
+        $this->render('admin.posts.index', compact('posts', 'locationTitle', 'categories', 'calledFunction',  'settings', 'page', 'orderSelected', 'nbrOfPages'));
     }
     
     public function category(){

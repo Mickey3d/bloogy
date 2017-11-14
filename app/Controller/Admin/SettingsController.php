@@ -20,7 +20,8 @@ class SettingsController extends AppController {
                 'siteName' => $_POST['siteName'],
                 'slogan' => $_POST['slogan'],
                 'logoSubtitle' => $_POST['logoSubtitle'],
-                'mailContact' => $_POST['mailContact']
+                'mailContact' => $_POST['mailContact'],
+                'nbrPostPerPage' => $_POST['nbrPostPerPage']
             ]);
             if($result){
                 header('Location: index.php?p=admin.settings.edit');
